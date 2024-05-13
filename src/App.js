@@ -5,7 +5,7 @@ import Landing from "./pages/landing";
 import Loading from "./pages/landing/loading";
 
 import List from "./pages/main";
-import Detail from "./pages/detail";
+import Detail from "./pages/main/detail";
 
 import Hosting from "./pages/hosting";
 
