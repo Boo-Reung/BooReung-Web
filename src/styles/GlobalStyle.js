@@ -7,7 +7,7 @@ import HappinessSansBold from "../assets/fonts/Happiness-Sans-Bold.woff2";
 
 const GlobalStyle = createGlobalStyle`
 @font-face {
-    font-family: 'Happiness-Sans';
+    font-family: 'HappinessSans';
     src: local('HappinessSans') format('woff2');
     font-weight: normal;
     font-style: normal;

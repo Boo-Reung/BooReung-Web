@@ -1,32 +1,17 @@
 import React from "react";
 import styled from "styled-components";
+import AppBar from "../../components/AppBar"
 
-
-const MyPage = () => {
+const Main = () => {
     return (
-        <div>
-            <MainContainer>
-                <Container>
-
-                </Container>
-            </MainContainer>
-        </div>
+        <Container>
+            <AppBar />
+        </Container>
     );
 };
 
-const MainContainer = styled.div`
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-
-    height: calc(100vh - 10rem);
-`;
+export default Main;
 
 const Container = styled.div`
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 3.125rem;
 `;
 
-export default MyPage;
