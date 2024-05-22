@@ -7,6 +7,8 @@ const Hosting = () => {
     return (
         <Container>
             <AppBar />
+    
+
             <CommonButton text = {'정보 입력 완료'} />
         </Container>
     );
