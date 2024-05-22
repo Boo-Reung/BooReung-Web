@@ -12,7 +12,7 @@ const Detail = () => {
     );
 };
 
-
+/**/
 const Container = styled.div`
 `;
 
