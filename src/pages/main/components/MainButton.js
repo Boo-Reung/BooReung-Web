@@ -1,9 +1,9 @@
 import React from "react";
 import { styled } from "styled-components";
 
-const MainButton = ({ text, onClick }) => {
+const MainButton = ({ text, onClick, width, height }) => {
     return (
-        <Button onClick={onClick}>
+        <Button onClick={onClick} width={width} height={height}>
             {text}
         </Button>
     );
@@ -13,15 +13,12 @@ export default MainButton;
 
 const Button = styled.button`
     // 디자인 속성
-    width: 12.6875rem;
-    height: 3.5rem;
+    width: ${props => props.width || "12.6875rem"};
+    height: ${props => props.height || "3.5rem"};
     flex-shrink: 0;
     border-radius: 1.25rem;
     background: #164863;
     // 정렬 속성
-    margin-left: 5.88rem;
-    position: absolute;
-    bottom: 8rem;
 
     // text prop 속성
     display: flex;

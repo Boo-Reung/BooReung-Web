@@ -37,9 +37,9 @@ const Main = () => {
             <QuantityAndButtonsContainer>
                 <RowContainer>
                     <RegisteredNum>등록된 카풀 수 {registeredPoolCount}개</RegisteredNum>
-                    <CustomHostingButton/>
+                    <HostingButton text="카풀 주최하기" width="150px" height = "50px"/>
                 </RowContainer>
-                <CustomEnterCompleteButton/>
+                <EnterCompleteButton text="성사된 카풀 정보 입력하러 가기!" width="200px" height="60px"/>
             </QuantityAndButtonsContainer>
             <ContentContainer>
 
@@ -52,6 +52,8 @@ const Main = () => {
 export default Main;
 
 const Container = styled.div`
+    display: flex;
+    flex-direction: column;
 `;
 
 const SearchContainer = styled.div`
@@ -73,17 +75,6 @@ const RowContainer = styled.div`
     flex-direction: row;
 `;
 
-
-// 다른 코드는 그대로 두고 HostingButton과 EnterCompleteButton의 스타일을 직접 지정합니다.
-const CustomHostingButton = styled(HostingButton)`
-    width: 100px; /* 내가 원하는 너비 값 */
-    height: 50px; /* 내가 원하는 높이 값 */
-`;
-
-const CustomEnterCompleteButton = styled(EnterCompleteButton)`
-    width: 150px; /* 내가 원하는 너비 값 */
-    height: 60px; /* 내가 원하는 높이 값 */
-`;
 
 const RegisteredNum = styled.div`
 
