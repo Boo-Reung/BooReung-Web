@@ -22,6 +22,7 @@ const Button = styled.button`
     margin-left: 5.88rem;
     position: absolute;
     bottom: 8rem;
+    transform: translate(0,70px);  //민석 버튼 옮김 
 
     // text prop 속성
     display: flex;

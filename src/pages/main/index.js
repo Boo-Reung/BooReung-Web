@@ -7,6 +7,7 @@ import HostingButton from "./components/MainButton"
 import EnterCompleteButton from "./components/MainButton"
 import axios from "axios"
 
+
 const Main = () => {
     const [showFilterModal, setShowFilterModal] = useState(false);
     const [registeredPoolCount, setRegisteredPoolCount] = useState(0);
@@ -84,5 +85,3 @@ const ContentContainer = styled.div`
     display: flex;
     flex-direction: column;
 `;
-
-
