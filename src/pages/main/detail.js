@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import AppBar from "../../components/AppBar"
 import CommonButton from "../../components/CommonButton"
-import CarpoolDateContainer from "./components/DetailContainer"
+import CarpoolDateContainer from "./components/DetailContainerBig"
 
 const Detail = () => {
     return (

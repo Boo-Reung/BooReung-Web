@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 
-const DetailContainer = ({subtitle, content}) => {
+const DetailContainerBig = ({subtitle, content}) => {
     return (
         <Container>
             <Subtitle>{subtitle}</Subtitle>
@@ -49,4 +49,4 @@ const ContentText = styled.p`
     line-height: normal;
 `
 
-export default DetailContainer
+export default DetailContainerBig
