@@ -8,7 +8,7 @@ import EnterCompleteButton from "./components/index/MainButton"
 import ListComponent from "./components/index/ListComponent"
 import axios from "axios"
 /* 필터 관련 imports */
-import Filter from "./components/filter/Filter"
+import Filter from "./Filter"
 
 
 const Main = () => {
