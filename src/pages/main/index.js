@@ -46,30 +46,47 @@ const Main = () => {
     }, []);
 
     return (
-        <Container>
-            <AppBar />
-            <SearchContainer>
-                <FilterButton onClick={toggleFilterModal}>검색 필터</FilterButton>
-                <SearchBox />
-            </SearchContainer>
-            <QuantityAndButtonsContainer>
-                <RowContainer>
-                    <RegisteredNum>등록된 카풀 <br /> 개수: {registeredPoolCount}개</RegisteredNum>
-                    <HostingButton text="카풀 주최하기" width="12.6875rem" height = "3.5rem" onClick={handleHostingButtonClick}/>
-                </RowContainer>
-                <EnterCompleteButton text="성사된 카풀 정보 입력하러 가기!" width="20.5625rem" height="3.5rem" onClick={handleCompleteButtonClick}/>
-            </QuantityAndButtonsContainer>
-            <ContentContainer>
-                <ListComponent title={"싸게 모현에서 이문 고고"} type={"통학"} client_gender={"남성"} dept={"백년관 정류장"} dest={"서현역"} carpool_date={"2023-11-09"} member={"5"} price={"5000"} onClick={handleDetailButtonClick}/>
-                <ListComponent title={"싸게 모현에서 이문 고고"} type={"통학"} client_gender={"남성"} dept={"백년관 정류장"} dest={"서현역"} carpool_date={"2023-11-09"} member={"5"} price={"5000"} onClick={handleDetailButtonClick}/>
-                <ListComponent title={"싸게 모현에서 이문 고고"} type={"통학"} client_gender={"남성"} dept={"백년관 정류장"} dest={"서현역"} carpool_date={"2023-11-09"} member={"5"} price={"5000"} onClick={handleDetailButtonClick}/>
-            </ContentContainer>
-            <Filter show={showFilterModal} onClose={toggleFilterModal} />
-        </Container>
+        <RootContainer>
+            <Container>
+                <AppBar />
+                <SearchContainer>
+                    <FilterButton onClick={toggleFilterModal}>검색 필터</FilterButton>
+                    <SearchBox />
+                </SearchContainer>
+                <QuantityAndButtonsContainer>
+                    <RowContainer>
+                        <RegisteredNum>등록된 카풀 <br /> 개수: {registeredPoolCount}개</RegisteredNum>
+                        <HostingButton text="카풀 주최하기" width="12.6875rem" height = "3.5rem" onClick={handleHostingButtonClick}/>
+                    </RowContainer>
+                    <EnterCompleteButton text="성사된 카풀 정보 입력하러 가기!" width="20.5625rem" height="3.5rem" onClick={handleCompleteButtonClick}/>
+                </QuantityAndButtonsContainer>
+                <ContentContainer>
+                    <ListComponent title={"싸게 모현에서 이문 고고"} type={"통학"} client_gender={"남성"} dept={"백년관 정류장"} dest={"서현역"} carpool_date={"2023-11-09"} member={"5"} price={"5000"} onClick={handleDetailButtonClick}/>
+                    <ListComponent title={"싸게 모현에서 이문 고고"} type={"통학"} client_gender={"남성"} dept={"백년관 정류장"} dest={"서현역"} carpool_date={"2023-11-09"} member={"5"} price={"5000"} onClick={handleDetailButtonClick}/>
+                    <ListComponent title={"싸게 모현에서 이문 고고"} type={"통학"} client_gender={"남성"} dept={"백년관 정류장"} dest={"서현역"} carpool_date={"2023-11-09"} member={"5"} price={"5000"} onClick={handleDetailButtonClick}/>
+                </ContentContainer>
+                <Filter show={showFilterModal} onClose={toggleFilterModal} />
+            </Container>
+        </RootContainer>
+
     );
 };
 
 export default Main;
+
+const RootContainer = styled.div`
+    width: 390px;
+    max-width: 390px;
+    margin: auto;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    background-color: #F6FCFF;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow-y: auto; /* 스크롤 가능하게 설정 */
+    padding-bottom: 1.5rem;
+`;
 
 const Container = styled.div`
     display: flex;
