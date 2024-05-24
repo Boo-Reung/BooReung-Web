@@ -9,7 +9,7 @@ const Filter = ({ show, onClose }) => {
 
     return (
         <Overlay>
-            <ModalContainer onClick={e => e.stopPropagation()}>
+            <ModalContainer onClick={e => e.stopPropagation()}> {/* 모달 내부 공백을 클릭해도 모달이 닫히지 않음 */}
                 <CloseButton onClick={onClose}>설정완료!</CloseButton>
                 {/* Filter modal content goes here */}
             </ModalContainer>

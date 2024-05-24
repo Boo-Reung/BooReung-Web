@@ -50,6 +50,8 @@ const BackButton = styled.img`
     width: 1.25rem;
     height: 1.25rem;
     margin-left: 0.62rem;
+    cursor: pointer;
+
 `
 
 const Logo = styled.img`
@@ -64,4 +66,6 @@ const Warning = styled.img`
     height: 1.25rem;
     flex-shrink: 0;
     margin-left: 0.62rem;
+    cursor: pointer;
+
 `

@@ -44,6 +44,8 @@ const Container = styled.div`
     justify-content: center;
     align-items: center;
     gap: 1rem;
+    cursor: pointer;
+
 `
 
 const Title = styled.div`
