@@ -1,4 +1,5 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import AppBar from "../../components/AppBar"
 import CommonButton from "../../components/CommonButton"
@@ -16,6 +17,12 @@ import PostNum from "./components/detail/PostNum"
 import HostNameAndType from "./components/detail/HostNameAndType";
 
 const Detail = () => {
+    const navigate = useNavigate();
+
+    const handleListButtonClick = () => {
+        navigate("/list");
+    };
+
     return (
         <RootContainer>
             <Container>
@@ -37,7 +44,7 @@ const Detail = () => {
                 <Content subtitle={"내용"} content={"설캠 이중전공 때문에 이문동 가셔야하거나 이문동에 사시는 분들 제 차 타고 가세요~~"}/>
                 <OpenKakao subtitle={"오픈 카톡방 링크"} content={"openkakao.kjhihig"}/> 
             </Container>
-            <CommonButton text={"닫기"}/>
+            <CommonButton text={"닫기"} onClick={handleListButtonClick}/>
         </RootContainer>
     );
 };
