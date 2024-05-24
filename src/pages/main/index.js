@@ -49,7 +49,7 @@ const Main = () => {
         <Container>
             <AppBar />
             <SearchContainer>
-                <FilterButton onClick={toggleFilterModal}>Open Filter</FilterButton>
+                <FilterButton onClick={toggleFilterModal}>검색 필터</FilterButton>
                 <SearchBox />
             </SearchContainer>
             <QuantityAndButtonsContainer>
@@ -87,7 +87,14 @@ const FilterButton = styled.button`
     margin-right: 10px;
     padding: 10px 20px;
     cursor: pointer;
+    width: 7.4375rem;
+    height: 2.4375rem;
+    flex-shrink: 0;
+    border-radius: 10px;
+    background-color: transparent; /* 배경색 */
+    border: 1px solid #9BBEC8; /* 테두리 색상 */
 `;
+
 const QuantityAndButtonsContainer = styled.div`
     display: flex;
     flex-direction: column;
