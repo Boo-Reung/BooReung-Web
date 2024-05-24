@@ -1,10 +1,10 @@
 import React, {useState, useEffect} from "react";
 import styled from "styled-components";
 import AppBar from "../../components/AppBar"
-import Filter from "./components/Filter"
-import SearchBox from "./components/Search"
-import HostingButton from "./components/MainButton"
-import EnterCompleteButton from "./components/MainButton"
+import Filter from "./components/index/Filter"
+import SearchBox from "./components/index/Search"
+import HostingButton from "./components/index/MainButton"
+import EnterCompleteButton from "./components/index/MainButton"
 import axios from "axios"
 
 
@@ -43,7 +43,7 @@ const Main = () => {
                 <EnterCompleteButton text="성사된 카풀 정보 입력하러 가기!" width="200px" height="60px"/>
             </QuantityAndButtonsContainer>
             <ContentContainer>
-
+                
             </ContentContainer>
             <Filter show={showFilterModal} onClose={toggleFilterModal} />
         </Container>

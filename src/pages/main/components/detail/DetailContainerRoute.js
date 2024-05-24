@@ -1,29 +1,26 @@
 import React from "react";
 import styled from "styled-components";
+import ArrowImg from "../../../../assets/images/RightArrow.svg"
 
-const DetailContainerBig = ({subtitle, dept, dest}) => {
+const DetailContainerRoute = ({subtitle, dept, dest}) => {
     return (
         <ColumnContainer>
             <Subtitle>{subtitle}</Subtitle>
             <RowContainer>
-                <Container>
-                    <ContentBox>
-                        <ContentText>{dept}</ContentText>
-                    </ContentBox>
-                </Container>
-                <Arrow/>
-                <Container>
-                    <ContentBox>
-                        <ContentText>{dest}</ContentText>
-                    </ContentBox>
-                </Container>
+                        <ContentBox>
+                            <ContentText>{dept}</ContentText>
+                        </ContentBox>
+                    <Arrow src={ArrowImg} alt="arrow"/>
+                        <ContentBox>
+                            <ContentText>{dest}</ContentText>
+                        </ContentBox>
             </RowContainer>
         </ColumnContainer>
     );
 };
 
 const ColumnContainer = styled.div`
-    width: 22.0625rem;
+    width: 22.4375rem;
     height: 6.0625rem;
     display: flex;
     flex-direction: column;
@@ -32,19 +29,16 @@ const ColumnContainer = styled.div`
 const RowContainer = styled.div`
     display: flex;
     flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    width: 22.4375rem;
+    
 `
 
 const Arrow = styled.img`
-
-`
-
-
-const Container = styled.div`
-    display: flex;
-    flex-direction: column;
-    width: 9.1875rem;
-    height: 6.5rem;
-    flex-shrink: 0;
+    width: 2rem; /* 적절한 너비와 높이 설정 */
+    height: 2rem;
+    margin: 0 0.5rem; /* 좌우 여백 설정 */
 `
 
 const Subtitle = styled.p`
@@ -66,6 +60,9 @@ const ContentBox = styled.div`
     border-radius: 0.625rem;
     border: 1px solid #9BBEC8;
     background: rgba(210, 236, 250, 0.00);
+    display: flex;
+    align-items: center;
+    justify-content: center;
 `
 
 const ContentText = styled.p`
@@ -77,4 +74,4 @@ const ContentText = styled.p`
     line-height: normal;
 `
 
-export default DetailContainerBig
+export default DetailContainerRoute
