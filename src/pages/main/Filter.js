@@ -1,5 +1,11 @@
 import React from "react";
 import styled from "styled-components";
+import FilterContainerType from "./components/filter/FilterContainerType";
+import FilterContainerGender from "./components/filter/FilterContainerGender"
+import FilterContainerDate from "./components/filter/FilterContainerDate";
+import FilterContainerRoute from "./components/filter/FilterContainerRoute"
+import FilterContainerMember from "./components/filter/FilterContainerMember";
+import FilterContainerPrice from "./components/filter/FilterContainerPrice";
 
 const Filter = ({ show, onClose }) => {
     if (!show) {
@@ -11,11 +17,14 @@ const Filter = ({ show, onClose }) => {
         <Overlay>
             <ModalContainer onClick={e => e.stopPropagation()}> {/* 모달 내부 공백을 클릭해도 모달이 닫히지 않음 */}
                 <CloseButton onClick={onClose}>설정완료!</CloseButton>
-                {/* Filter modal content goes here */}
-                
+                <FilterContainerType/>
+                <FilterContainerGender/>
+                <FilterContainerDate/>
+                <FilterContainerRoute/>
+                <FilterContainerMember/>
+                <FilterContainerPrice/>
             </ModalContainer>
         </Overlay>
-
     );
 };
 
@@ -30,6 +39,7 @@ const Overlay = styled.div`
     justify-content: center;
     align-items: center;
     z-index: 1000;
+
 `;
 
 const ModalContainer = styled.div`
@@ -37,10 +47,14 @@ const ModalContainer = styled.div`
     padding: 20px;
     border-radius: 5px;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-    width: 330px;
+    width: 358px;
     height: 800px;
     overflow-y: auto; /* Allow scrolling within the modal */
     position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-right: 1rem;
 `;
 
 const CloseButton = styled.button`
@@ -50,7 +64,7 @@ const CloseButton = styled.button`
     right: 10px;
     cursor: pointer;
     width: 7rem;
-    height: 3rem;
+    height: 2.5rem;
     flex-shrink: 0;
     border-radius: 0.5rem;
     background: #164863;
