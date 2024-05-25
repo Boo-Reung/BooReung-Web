@@ -27,7 +27,7 @@ const Detail = () => {
         <RootContainer>
             <Container>
                 <AppBar/>
-                <Title title={"경주 갈사람"}/>
+                <Title title={"하이"}/>
                 <HeaderContainer>
                     <PostNum post_num={"2983"}/>
                     <HostNameAndType host_name={"김재우"} type={"여행"}/>
