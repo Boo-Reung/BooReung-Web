@@ -11,10 +11,12 @@ import Hosting from "./pages/hosting";
 
 import After from "./pages/after";
 
+
 function App() {
     return (
         <div>
             <Routes>
+
                 {/*랜딩 페이지*/}
                 <Route index element={<Landing />} />
 

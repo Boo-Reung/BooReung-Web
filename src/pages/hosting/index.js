@@ -14,7 +14,6 @@ const Hosting = () => {
             <ContentWrapper>
                 <HostingPage/>
 
-
             <CommonButton text = {'정보 입력 완료'} />
 
             </ContentWrapper>
