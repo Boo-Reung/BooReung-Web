@@ -1,37 +1,30 @@
 import { createGlobalStyle } from "styled-components";
 
 // fonts
-import HappinessSans from "../assets/fonts/Happiness-Sans-Title.woff2";
-import HappinessSansRegular from "../assets/fonts/Happiness-Sans-Regular.woff2";
-import HappinessSansBold from "../assets/fonts/Happiness-Sans-Bold.woff2";
+import GowunBatangBold from "../assets/fonts/GowunBatang-Bold.ttf";
+import GowunBatangRegular from "../assets/fonts/GowunBatang-Regular.ttf";
 
 const GlobalStyle = createGlobalStyle`
 @font-face {
-    font-family: 'HappinessSans';
-    src: local('HappinessSans') format('woff2');
+    font-family: 'GowunBatang';
+    src: local('GowunBatangBold') format('ttf');
     font-weight: normal;
     font-style: normal;
 }
 
 @font-face {
-    font-family: 'Happiness-Sans';
-    src: local('HappinessSansRegular') format('woff2');
+    font-family: 'GowunBatang';
+    src: local('GowunBatangRegular') format('ttf');
     font-weight: normal;
     font-style: normal;
 }
 
-@font-face {
-    font-family: 'Happiness-Sans';
-    src: local('HappinessSansBold') format('woff2');
-    font-weight: normal;
-    font-style: normal;
-}
 
   * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Happiness-Sans';
+    font-family: 'GowunBatang';
   }
   
   li {
