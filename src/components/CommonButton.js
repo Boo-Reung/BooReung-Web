@@ -19,6 +19,7 @@ const Button = styled.button`
     border-radius: 1.25rem;
     background: #164863;
     // 정렬 속성
+
     margin-left: 5.88rem;
     position: absolute;
     bottom: 8rem;
