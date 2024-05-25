@@ -19,9 +19,11 @@ const Button = styled.button`
     border-radius: 1.25rem;
     background: #164863;
     // 정렬 속성
-    margin-left: 5.88rem;
-    position: absolute;
-    bottom: 8rem;
+    position: relative;
+    top: 1rem;
+    left: 5.8rem;      // 좌우 간격 조정
+    right: 5.8rem;     // 좌우 간격 조정
+    bottom: 1.88rem;   // 하단 간격 조정
 
     // text prop 속성
     display: flex;
