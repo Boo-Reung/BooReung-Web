@@ -27,13 +27,13 @@ const FilterContainerRoute = ({ routeSelection }) => {
                         isSelected={selected === "없음"}
                         onClick={() => handleSelect("없음")}
                     >
-                        없음
+                        무관
                     </ContentText>
                     <ContentText
                         isSelected={selected === "있음"}
                         onClick={() => handleSelect("있음")}
                     >
-                        있음
+                        설정
                     </ContentText>
                 </ContentTextRow>
             </SubTitleContainerRow>
