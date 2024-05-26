@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState  } from "react";
 import styled from "styled-components";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
@@ -15,6 +15,7 @@ const HostingPage = () => {
 
   return (
     <PageWrapper>
+
         <PageTitle>제목을 입력하세요</PageTitle>
         <Input type="text" placeholder="10글자 이내로 입력하세요" />
         <PageTitle>이름을 입력하세요</PageTitle>
@@ -87,19 +88,21 @@ const HostingPage = () => {
 
 export default HostingPage;
 
+
 const PageWrapper = styled.div`
 display : flex;
 flex-direction:column;
 align-items: flex-start;
-padding: 1rem 1rem;
+padding: 0rem 1rem 1rem 1rem;
 width: 100%;
-max-width: 400px;
+max-width: 390px;
 margin: 0 auto;
 `
 const PageTitle = styled.h1`
+width: 100%
 height: 2rem;
 flex-shrink: 0;
-font-size: 1.375rem;
+font-size: 1.3rem;
 margin:0.4rem 0;
 padding-top: 0.88rem;
 color: #000;
@@ -107,7 +110,7 @@ font-family: "Gowun Batang";
 `
 
 const Input = styled.input`
-  width: 359px;
+  width: 100%;
   height: 61px;
   flex-shrink: 0;
   border-radius: 10px;
@@ -121,7 +124,7 @@ const Input = styled.input`
 `;
 
 const BigInput = styled.textarea`
-  width: 359px;
+  width: 100%;
   height: 246px;
   flex-shrink: 0;
   border-radius: 10px;
@@ -139,7 +142,7 @@ const BigInput = styled.textarea`
 `;
 
 const DatePickerWrapper = styled.div`
-  width: 359px;
+  width: 100%;
   height: 61px;
   flex-shrink: 0;
   border-radius: 10px;
