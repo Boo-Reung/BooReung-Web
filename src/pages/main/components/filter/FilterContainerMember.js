@@ -1,5 +1,7 @@
 import React, {useState} from "react";
 import styled, {css} from "styled-components";
+import MinBoxMember from "./member/MinBoxMember";
+import MaxBoxMember from "./member/MaxBoxMember";
 
 const FilterContainerMember = () => {
 
@@ -39,8 +41,8 @@ const FilterContainerMember = () => {
                         <Max>최대 인원</Max>
                     </MinMaxContainerColumn>
                     <MinMaxBoxContainerColumn>
-                        <MinBox/>
-                        <MaxBox/>
+                        <MinBoxMember/>
+                        <MaxBoxMember/>
                     </MinMaxBoxContainerColumn>
                     <MyeongContainerColumn>
                         <Myeong>명</Myeong>
@@ -150,28 +152,7 @@ const MinMaxBoxContainerColumn = styled.div`
     gap: 0.5rem;
 `
 
-const MinBox = styled.div`
-    width: 7.5rem;
-    height: 2.4375rem;
-    flex-shrink: 0;
-    border-radius: 0.625rem;
-    border: 1px solid #9BBEC8;
-    background: rgba(210, 236, 250, 0.00);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-`
-const MaxBox = styled.div`
-    width: 7.5rem;
-    height: 2.4375rem;
-    flex-shrink: 0;
-    border-radius: 0.625rem;
-    border: 1px solid #9BBEC8;
-    background: rgba(210, 236, 250, 0.00);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-`
+
 
 const MyeongContainerColumn = styled.div`
     display: flex;

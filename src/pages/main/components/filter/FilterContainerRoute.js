@@ -2,6 +2,9 @@ import React, {useState} from "react";
 import styled, {css} from "styled-components";
 import DownArrow from "../../../../assets/images/DownArrow.svg"
 
+import RouteDropDown from "./route/RouteDropDown"
+import RouteSearch from "./route/RouteSearch"
+
 /* [목적 : 여행] 이면 출발, 도착지가 검색창이어야 한다. */
 /* [목적 : 통학] 이면 출발, 도착지가 피그마대로 드롭다운 형식이어야 한다. */
 /* [목적 : 없음] 여행 선택했을 떄와 동일 (출발, 도착지가 검색창) */
@@ -42,35 +45,9 @@ const FilterContainerRoute = ({ routeSelection }) => {
                 {selected !== "없음" && (
                     <>
                         {routeSelection === "통학" ? (
-                            <DropDownContainerRow>
-                                <ArrowContainerColumn>
-                                    <Start>출발</Start>
-                                    <Arrow src={DownArrow} alt="arrow" />
-                                    <Arrive>도착</Arrive>
-                                </ArrowContainerColumn>
-                                <RegionContainerColumn>
-                                    <Region>지역</Region>
-                                    <DeptBoxRegion />
-                                    <DestBoxRegion />
-                                </RegionContainerColumn>
-                                <BusStopContainerColumn>
-                                    <BusStop>정류장</BusStop>
-                                    <DeptBoxBusStop />
-                                    <DestBoxBusStop />
-                                </BusStopContainerColumn>
-                            </DropDownContainerRow>
+                            <RouteDropDown/>
                         ) : (
-                            <SearchContainerRow>
-                                <ArrowContainerColumn>
-                                    <Start>출발</Start>
-                                    <Arrow src={DownArrow} alt="arrow" />
-                                    <Arrive>도착</Arrive>
-                                </ArrowContainerColumn>
-                                <SearchBoxContainerColumn>
-                                    <DeptBoxSearch />
-                                    <DestBoxSearch />
-                                </SearchBoxContainerColumn>
-                            </SearchContainerRow>
+                            <RouteSearch/>
                         )}
                     </>
                 )}
@@ -143,152 +120,6 @@ const DynamicContainer = styled.div`
                   height: 0; /* "없음"이 선택된 경우, 컨테이너의 높이를 0으로 설정하여 내용을 숨김 */
                   overflow: hidden; /* 내용을 숨기기 위해 overflow를 hidden으로 설정함 */
               `}
-`;
-
-const DropDownContainerRow = styled.div`
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-`;
-
-const SearchContainerRow = styled.div`
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    margin-top: 1.5rem;
-`;
-
-const ArrowContainerColumn = styled.div`
-    display: flex;
-    flex-direction: column;
-    margin-top: auto;
-`;
-
-const Start = styled.div`
-    width: 1.875rem;
-    height: 1.34488rem;
-    flex-shrink: 0;
-    color: #000;
-    font-family: "Gowun Dodum";
-    font-size: 0.9375rem;
-    font-style: normal;
-    font-weight: 400;
-    line-height: normal;
-`;
-
-const Arrow = styled.img`
-    width: 1.32263rem;
-    height: 2.39694rem;
-    flex-shrink: 0;
-`;
-
-const Arrive = styled.div`
-    width: 1.875rem;
-    height: 1.34488rem;
-    flex-shrink: 0;
-    color: #000;
-    font-family: "Gowun Dodum";
-    font-size: 0.9375rem;
-    font-style: normal;
-    font-weight: 400;
-    line-height: normal;
-`;
-
-const RegionContainerColumn = styled.div`
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 0.5rem;
-`;
-
-const BusStopContainerColumn = styled.div`
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 0.5rem;
-`;
-
-const Region = styled.div``;
-
-const BusStop = styled.div``;
-
-const DeptBoxRegion = styled.div`
-    width: 7.5rem;
-    height: 2.4375rem;
-    flex-shrink: 0;
-    border-radius: 0.625rem;
-    border: 1px solid #9bbec8;
-    background: rgba(210, 236, 250, 0.00);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-`;
-
-const DestBoxRegion = styled.div`
-    width: 7.5rem;
-    height: 2.4375rem;
-    flex-shrink: 0;
-    border-radius: 0.625rem;
-    border: 1px solid #9bbec8;
-    background: rgba(210, 236, 250, 0.00);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-`;
-
-const DeptBoxBusStop = styled.div`
-    width: 7.5rem;
-    height: 2.4375rem;
-    flex-shrink: 0;
-    border-radius: 0.625rem;
-    border: 1px solid #9bbec8;
-    background: rgba(210, 236, 250, 0.00);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-`;
-
-const DestBoxBusStop = styled.div`
-    width: 7.5rem;
-    height: 2.4375rem;
-    flex-shrink: 0;
-    border-radius: 0.625rem;
-    border: 1px solid #9bbec8;
-    background: rgba(210, 236, 250, 0.00);
-    display: flex;
-`;
-
-const SearchBoxContainerColumn = styled.div`
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 0.5rem;
-`;
-
-const DeptBoxSearch = styled.div`
-    width: 15.5rem;
-    height: 2.4375rem;
-    flex-shrink: 0;
-    border-radius: 0.625rem;
-    border: 1px solid #9bbec8;
-    background: rgba(210, 236, 250, 0.00);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-`;
-
-const DestBoxSearch = styled.div`
-    width: 15.5rem;
-    height: 2.4375rem;
-    flex-shrink: 0;
-    border-radius: 0.625rem;
-    border: 1px solid #9bbec8;
-    background: rgba(210, 236, 250, 0.00);
-    display: flex;
-    justify-content: center;
-    align-items: center;
 `;
 
 export default FilterContainerRoute;

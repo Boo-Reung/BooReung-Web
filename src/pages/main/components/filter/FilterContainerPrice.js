@@ -1,5 +1,7 @@
 import React, {useState} from "react";
 import styled, {css} from "styled-components";
+import MinBoxPrice from "./price/MinBoxPrice"
+import MaxBoxPrice from "./price/MaxBoxPrice";
 
 
 
@@ -40,8 +42,8 @@ const FilterContainerMember = () => {
                         <Max>최대 가격</Max>
                     </MinMaxContainerColumn>
                     <MinMaxBoxContainerColumn>
-                        <MinBox/>
-                        <MaxBox/>
+                        <MinBoxPrice/>
+                        <MaxBoxPrice/>
                     </MinMaxBoxContainerColumn>
                     <WonContainerColumn>
                         <Won>원</Won>
@@ -149,29 +151,6 @@ const MinMaxBoxContainerColumn = styled.div`
     flex-direction: column;
     align-items: center;
     gap: 0.5rem;
-`
-
-const MinBox = styled.div`
-    width: 7.5rem;
-    height: 2.4375rem;
-    flex-shrink: 0;
-    border-radius: 0.625rem;
-    border: 1px solid #9BBEC8;
-    background: rgba(210, 236, 250, 0.00);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-`
-const MaxBox = styled.div`
-    width: 7.5rem;
-    height: 2.4375rem;
-    flex-shrink: 0;
-    border-radius: 0.625rem;
-    border: 1px solid #9BBEC8;
-    background: rgba(210, 236, 250, 0.00);
-    display: flex;
-    justify-content: center;
-    align-items: center;
 `
 
 const WonContainerColumn = styled.div`
