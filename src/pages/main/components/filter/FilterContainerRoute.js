@@ -1,15 +1,37 @@
-import React from "react";
-import styled from "styled-components";
+import React, {useState} from "react";
+import styled, {css} from "styled-components";
 import DownArrow from "../../../../assets/images/DownArrow.svg"
 
+/* [목적 : 여행] 이면 출발, 도착지가 검색창이어야 한다. */
+/* [목적 : 통학] 이면 출발, 도착지가 피그마대로 드롭다운 형식이어야 한다. */
+/* [목적 : 없음] 여행 선택했을 떄와 동일 (출발, 도착지가 검색창) */
+
+/* [경로 : 없음] 목적에서 무엇을 선택하든 검색창 및 드롭다운을 띄우지 않음 */
+
 const FilterContainerRoute = () => {
+
+    const [selected, setSelected] = useState("없음");
+
+    const handleSelect = (type) => {
+        setSelected(type);
+    };
+
     return (
         <Container>
             <SubTitleContainerRow>
                 <Subtitle>경로</Subtitle>
-                <ContentText>없음</ContentText>                
+            <ContentTextRow>
+                <ContentText
+                    isSelected={selected === "없음"}
+                    onClick={() => handleSelect("없음")}
+                >없음</ContentText>
+                <ContentText
+                    isSelected={selected === "있음"}
+                    onClick={() => handleSelect("있음")}
+                >있음</ContentText>                   
+            </ContentTextRow>
             </SubTitleContainerRow>
-            <SelectContainerRow>
+            <DropDownContainerRow>
                 <ArrowContainerColumn>
                     <Start>출발</Start>
                     <Arrow src={DownArrow} alt="arrow"/>
@@ -25,11 +47,56 @@ const FilterContainerRoute = () => {
                     <DeptBox/>
                     <DestBox/>                    
                 </BusStopContainerColumn>
-            </SelectContainerRow>
+            </DropDownContainerRow>
+            <SearchContainerRow>
+                <ArrowContainerColumn>
+                    <Start>출발</Start>
+                    <Arrow src={DownArrow} alt="arrow"/>
+                    <Arrive>도착</Arrive>
+                </ArrowContainerColumn>
+                <SearchBoxContainerColumn>
+                    <DeptSearchBox/>
+                    <DestSearchBox/> 
+                </SearchBoxContainerColumn>
+            </SearchContainerRow>
+
+
         </Container>
     );
 };
 
+const SearchBoxContainerColumn = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+`
+
+const DeptSearchBox = styled.div`
+    width: 15.5rem;
+    height: 2.4375rem;
+    flex-shrink: 0;
+    border-radius: 0.625rem;
+    border: 1px solid #9BBEC8;
+    background: rgba(210, 236, 250, 0.00);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+`
+
+const DestSearchBox = styled.div`
+    width: 15.5rem;
+    height: 2.4375rem;
+    flex-shrink: 0;
+    border-radius: 0.625rem;
+    border: 1px solid #9BBEC8;
+    background: rgba(210, 236, 250, 0.00);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+`
+
+/* 15.5rem */
 const Container = styled.div`
     width: 18.6875rem;
     height: 11.09538rem;
@@ -56,6 +123,11 @@ const Subtitle = styled.div`
     line-height: normal;
     margin-top: auto;
 `
+const ContentTextRow = styled.div`
+    display: flex;
+    flex-direction: row;
+    gap: 0.7rem;
+`
 
 const ContentText = styled.div`
     width: 6rem;
@@ -67,9 +139,25 @@ const ContentText = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
+    cursor: pointer;
+
+
+    ${({ isSelected }) => isSelected &&
+        css`
+            background: #003E5F;
+            color: white;
+            border: 1px solid #003E5F;
+        `}    
 `
 
-const SelectContainerRow = styled.div`
+const DropDownContainerRow = styled.div`
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+`
+
+const SearchContainerRow = styled.div`
     display: flex;
     flex-direction: row;
     justify-content: space-between;

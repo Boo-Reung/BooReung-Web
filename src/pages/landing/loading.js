@@ -114,7 +114,7 @@ const Loading = () => {
     </Container> 
   );} 
   else {
-  <Navigate to="/main" />;
+  return <Navigate to="/list" />;
     ;}
 }; 
 
