@@ -1,27 +1,54 @@
-import React from "react";
-import styled from "styled-components";
+import React, {useState} from "react";
+import styled, {css} from "styled-components";
+
+
 
 const FilterContainerMember = () => {
+
+    const [selected, setSelected] = useState("없음");
+
+    const handleSelect = (type) => {
+        setSelected(type);
+    };
+
+        // 선택된 값에 따라 Container의 높이 설정
+        const containerHeight = selected === "없음" ? "3rem" : "11.09538rem";
+
     return (
-        <Container>
+        <Container style={{height : containerHeight}}>
             <SubTitleContainerRow>
                 <Subtitle>가격</Subtitle>
-                <ContentText>없음</ContentText>                
+                <ContentTextRow>
+                    <ContentText
+                        isSelected={selected === "없음"}
+                        onClick={() => handleSelect("없음")}
+                    >
+                        없음
+                    </ContentText>
+                    <ContentText
+                        isSelected={selected === "있음"}
+                        onClick={() => handleSelect("있음")}
+                    >
+                        있음
+                    </ContentText>
+                </ContentTextRow>                
             </SubTitleContainerRow>
-            <SelectContainerRow>
-                <MinMaxContainerColumn>
-                    <Min>최소 가격</Min>
-                    <Max>최대 가격</Max>
-                </MinMaxContainerColumn>
-                <MinMaxBoxContainerColumn>
-                    <MinBox/>
-                    <MaxBox/>
-                </MinMaxBoxContainerColumn>
-                <WonContainerColumn>
-                    <Won>원</Won>
-                    <Won>원</Won>
-                </WonContainerColumn>
-            </SelectContainerRow>
+            {selected === "있음" && (
+                <SelectContainerRow>
+                    <MinMaxContainerColumn>
+                        <Min>최소 가격</Min>
+                        <Max>최대 가격</Max>
+                    </MinMaxContainerColumn>
+                    <MinMaxBoxContainerColumn>
+                        <MinBox/>
+                        <MaxBox/>
+                    </MinMaxBoxContainerColumn>
+                    <WonContainerColumn>
+                        <Won>원</Won>
+                        <Won>원</Won>
+                    </WonContainerColumn>
+                </SelectContainerRow>
+            )}
         </Container>
     );
 };
@@ -53,6 +80,12 @@ const Subtitle = styled.div`
     margin-top: auto;
 `
 
+const ContentTextRow = styled.div`
+    display: flex;
+    flex-direction: row;
+    gap: 0.7rem;
+`;
+
 const ContentText = styled.div`
     width: 6rem;
     height: 2.62256rem;
@@ -63,13 +96,23 @@ const ContentText = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
-`
+    cursor: pointer;
+
+    ${({ isSelected }) =>
+        isSelected &&
+        css`
+            background: #003e5f;
+            color: white;
+            border: 1px solid #003e5f;
+        `}
+`;
 
 const SelectContainerRow = styled.div`
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
+    margin-top: 1rem;
 `
 
 const MinMaxContainerColumn = styled.div`

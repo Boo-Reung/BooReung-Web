@@ -1,11 +1,14 @@
 import React, { useState } from "react";
 import styled, { css } from "styled-components";
 
-const FilterContainerType = () => {
+const FilterContainerType = ({updateRouteSelection}) => {
     const [selected, setSelected] = useState("없음");
 
     const handleSelect = (type) => {
         setSelected(type);
+
+        //부모 컴포넌트에 라우트 선택 정보 전달
+        updateRouteSelection(type);
     };
 
     return (
@@ -19,17 +22,18 @@ const FilterContainerType = () => {
                     없음
                 </ContentText>
                 <ContentText
-                    isSelected={selected === "통학"}
-                    onClick={() => handleSelect("통학")}
-                >
-                    통학
-                </ContentText>
-                <ContentText
                     isSelected={selected === "여행"}
                     onClick={() => handleSelect("여행")}
                 >
                     여행
                 </ContentText>
+                <ContentText
+                    isSelected={selected === "통학"}
+                    onClick={() => handleSelect("통학")}
+                >
+                    통학
+                </ContentText>
+
             </RowContainer>
         </Container>
     );

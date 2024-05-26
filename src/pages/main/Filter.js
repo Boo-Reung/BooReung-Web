@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import styled from "styled-components";
 import FilterContainerType from "./components/filter/FilterContainerType";
 import FilterContainerGender from "./components/filter/FilterContainerGender"
@@ -8,6 +8,13 @@ import FilterContainerMember from "./components/filter/FilterContainerMember";
 import FilterContainerPrice from "./components/filter/FilterContainerPrice";
 
 const Filter = ({ show, onClose }) => {
+    const [routeSelection, setRouteSelection] = useState("없음");
+
+    const updateRouteSelection = (selection) => {
+        setRouteSelection(selection);
+    };
+
+
     if (!show) {
         return null;
     }
@@ -17,10 +24,10 @@ const Filter = ({ show, onClose }) => {
         <Overlay>
             <ModalContainer onClick={e => e.stopPropagation()}> {/* 모달 내부 공백을 클릭해도 모달이 닫히지 않음 */}
                 <CloseButton onClick={onClose}>설정완료!</CloseButton>
-                <FilterContainerType/>
+                <FilterContainerType updateRouteSelection={updateRouteSelection} />
                 <FilterContainerGender/>
                 <FilterContainerDate/>
-                <FilterContainerRoute/>
+                <FilterContainerRoute routeSelection={routeSelection} />
                 <FilterContainerMember/>
                 <FilterContainerPrice/>
             </ModalContainer>
