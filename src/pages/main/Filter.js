@@ -9,15 +9,15 @@ import FilterContainerPrice from "./components/filter/FilterContainerPrice";
 import axios from "axios";
 
 const Filter = ({ show, onClose }) => {
-    const [routeSelection, setRouteSelection] = useState("없음"); /* 목적 */
-    const [genderSelection, setGenderSelection] = useState("없음"); /* 성별 */
-    const [deptSelection, setDeptSelection] = useState(null); /* 경로 (출발지) */
-    const [destSelection, setDestSelection] = useState(null); /* 경로 (도착지) */
-    const [minMemberSelection, setMinMemberSelection] = useState(null); /* 인원 (최소인원) */
-    const [maxMemberSelection, setMaxMemberSelection] = useState(null); /* 인원 (최대인원) */
-    const [minPriceSelection, setMinPriceSelection] = useState(''); /* 가격 (최소가격) */
-    const [maxPriceSelection, setMaxPriceSelection] = useState(''); /* 가격 (최대가격) */
-    const [dateSelection, setDateSelection] = useState(null); /* 날짜 선택 */
+    const [routeSelection, setRouteSelection] = useState("없음");
+    const [genderSelection, setGenderSelection] = useState(null); // 초기값을 null로 설정
+    const [deptSelection, setDeptSelection] = useState(null);
+    const [destSelection, setDestSelection] = useState(null);
+    const [minMemberSelection, setMinMemberSelection] = useState(null);
+    const [maxMemberSelection, setMaxMemberSelection] = useState(null);
+    const [minPriceSelection, setMinPriceSelection] = useState(null);
+    const [maxPriceSelection, setMaxPriceSelection] = useState(null);
+    const [dateSelection, setDateSelection] = useState(null);
 
     const updateRouteSelection = (selection) => {
         setRouteSelection(selection);
@@ -31,10 +31,36 @@ const Filter = ({ show, onClose }) => {
         setDateSelection(date);
     };
 
+    const formatDateToISO = (date) => {
+        if (!date) return null;
+
+        // 문자열일 경우 Date 객체로 변환
+        if (typeof date === 'string' || date instanceof String) {
+            date = new Date(date);
+        }
+
+        if (!(date instanceof Date) || isNaN(date.getTime())) {
+            console.error("Invalid date:", date);
+            return null;
+        }
+
+        const offset = date.getTimezoneOffset();
+        const offsetAbs = Math.abs(offset);
+        const hours = Math.floor(offsetAbs / 60);
+        const minutes = offsetAbs % 60;
+        const offsetSign = offset > 0 ? "-" : "+";
+        const offsetString = `${offsetSign}${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}`;
+        return `${date.toISOString().split('.')[0]}${offsetString}`;
+    };
+
     const handleClose = async () => {
-        const type = routeSelection === "없음" ? "None" : routeSelection;
-        const clientGender = genderSelection === "없음" ? "None" : genderSelection;
-    
+        const type = routeSelection === "없음" ? null : routeSelection;
+        const clientGender = genderSelection === "없음" ? null : genderSelection;
+
+        console.log("dateSelection:", dateSelection); // dateSelection 값 로깅
+
+        const formattedDate = formatDateToISO(dateSelection);
+
         const body = {
             type: type,
             client_gender: clientGender,
@@ -44,17 +70,18 @@ const Filter = ({ show, onClose }) => {
             max_member: maxMemberSelection,
             min_price: minPriceSelection,
             max_price: maxPriceSelection,
-            carpool_date: dateSelection ? dateSelection.toISOString() : null,
+            carpool_date: formattedDate,
         };
-    
+
+        console.log("carpool_date:", body.carpool_date); // carpool_date 값 로깅
+        console.log("Request body:", body); // 전체 요청 본문 로깅
+
         try {
-            const response = await axios.post('http://nkey18.pythonanywhere.com/api/carpools/filter/', body); // axios로 POST 요청 보내기
-            // 요청이 성공하면 모달 닫기
+            const response = await axios.post('http://nkey18.pythonanywhere.com/api/carpools/filter/', body);
             onClose();
             console.log(response.data);
         } catch (error) {
             console.error('Fetch 작업 중 문제가 발생했습니다:', error);
-            // 필요시 에러 처리, 예를 들어 사용자에게 알림 표시
         }
     };
 
@@ -64,7 +91,7 @@ const Filter = ({ show, onClose }) => {
 
     return (
         <Overlay>
-            <ModalContainer onClick={e => e.stopPropagation()}> {/* 모달 내부 공백을 클릭해도 모달이 닫히지 않음 */}
+            <ModalContainer onClick={e => e.stopPropagation()}>
                 <CloseButton onClick={handleClose}>설정완료!</CloseButton>
                 <FilterContainerType updateRouteSelection={updateRouteSelection} />
                 <FilterContainerGender updateGenderSelection={updateGenderSelection} />
@@ -107,7 +134,7 @@ const ModalContainer = styled.div`
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
     width: 358px;
     height: 800px;
-    overflow-y: auto; /* Allow scrolling within the modal */
+    overflow-y: auto;
     position: relative;
     display: flex;
     flex-direction: column;

@@ -13,7 +13,8 @@ const FilterContainerDate = ({ updateDateSelection }) => {
 
     const handleDateChange = (date) => {
         setSelectedDate(date);
-        updateDateSelection(date);
+        const formattedDate = date ? date.toLocaleString('sv-SE', { timeZoneName: 'short' }) : null;
+        updateDateSelection(formattedDate);
     };
 
     return (

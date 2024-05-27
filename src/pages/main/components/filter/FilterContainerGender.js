@@ -1,12 +1,17 @@
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
 import styled, {css} from "styled-components";
 
-const FilterContainerGender = () => {
+const FilterContainerGender = ({ updateGenderSelection }) => {
     const [selected, setSelected] = useState("없음");
 
     const handleSelect = (type) => {
         setSelected(type);
+        updateGenderSelection(type === "없음" ? null : type);
     };
+
+    useEffect(() => {
+        updateGenderSelection(selected === "없음" ? null : selected);
+    }, [selected, updateGenderSelection]);
 
     return (
         <Container>
@@ -79,8 +84,4 @@ const ContentText = styled.div`
         `}
 `;
 
-
-
-
-
-export default FilterContainerGender
+export default FilterContainerGender;
