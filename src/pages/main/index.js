@@ -10,7 +10,8 @@ import axios from "axios"
 /* 필터 관련 imports */
 import Filter from "./Filter"
 
-
+    // 1) 여기서 updateRouteSelection이 정의되어서 FilterContainerType.js으로 props 전달
+    // 3) FilterContainerType.js에서 업데이트된 상태는 Filter.js의 다른 자식 컴포넌트 (FilterContainerRoute에 영향)
 const Main = () => {
     const [showFilterModal, setShowFilterModal] = useState(false);
     const [registeredPoolCount, setRegisteredPoolCount] = useState(0);

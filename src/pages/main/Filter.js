@@ -8,6 +8,8 @@ import FilterContainerMember from "./components/filter/FilterContainerMember";
 import FilterContainerPrice from "./components/filter/FilterContainerPrice";
 import axios from "axios";
 
+
+
 const Filter = ({ show, onClose }) => {
     const [routeSelection, setRouteSelection] = useState("없음");
     const [genderSelection, setGenderSelection] = useState(null); // 초기값을 null로 설정
@@ -19,6 +21,8 @@ const Filter = ({ show, onClose }) => {
     const [maxPriceSelection, setMaxPriceSelection] = useState(null);
     const [dateSelection, setDateSelection] = useState(null);
 
+    // 1) 여기서 updateRouteSelection이 정의되어서 FilterContainerType.js으로 props 전달
+    // 3) FilterContainerType.js에서 업데이트된 상태는 Filter.js의 다른 자식 컴포넌트 (FilterContainerRoute에 영향)
     const updateRouteSelection = (selection) => {
         setRouteSelection(selection);
     };

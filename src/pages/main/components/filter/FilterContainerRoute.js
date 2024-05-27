@@ -10,6 +10,7 @@ import RouteSearch from "./route/RouteSearch"
 
 /* [경로 : 없음] 목적에서 무엇을 선택하든 검색창 및 드롭다운을 띄우지 않음 */
 
+
 // 4) routeSelection은 목적 값임  (없음, 통학, 여행) FilterContainerType에서 정해진게 Filter.js가 업데이트 되어서 Filter.js에서 날아옴 */
 const FilterContainerRoute = ({ routeSelection }) => {
     const [selected, setSelected] = useState("없음");
