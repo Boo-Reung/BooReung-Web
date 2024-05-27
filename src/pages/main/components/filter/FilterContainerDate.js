@@ -24,10 +24,10 @@ const FilterContainerDate = ({ updateDateSelection }) => {
                 <StyledDatePicker
                     selected={selectedDate}
                     onChange={handleDateChange}
-                    showTimeSelect
-                    dateFormat="yyyy-MM-dd HH:mm:ss"
+                    dateFormat="yyyy-MM-dd"
+                    showTimeSelect={false} // Disable time selection
                     open={datePickerOpen}
-                    placeholderText="날짜 및 시간 선택하기! (클릭)"
+                    placeholderText="날짜 선택하기! (클릭)"
                 />
             </DatePickerContainer>
         </Container>

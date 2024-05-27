@@ -37,25 +37,22 @@ const Filter = ({ show, onClose }) => {
 
     const formatDateToISO = (date) => {
         if (!date) return null;
-
+    
         // 문자열일 경우 Date 객체로 변환
         if (typeof date === 'string' || date instanceof String) {
             date = new Date(date);
         }
-
+    
         if (!(date instanceof Date) || isNaN(date.getTime())) {
             console.error("Invalid date:", date);
             return null;
         }
-
-        const offset = date.getTimezoneOffset();
-        const offsetAbs = Math.abs(offset);
-        const hours = Math.floor(offsetAbs / 60);
-        const minutes = offsetAbs % 60;
-        const offsetSign = offset > 0 ? "-" : "+";
-        const offsetString = `${offsetSign}${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}`;
-        return `${date.toISOString().split('.')[0]}${offsetString}`;
+    
+        const isoString = date.toISOString(); // ISO 형식의 문자열
+        const dateOnly = isoString.split('T')[0]; // "YYYY-MM-DD" 형식의 날짜 부분 추출
+        return dateOnly;
     };
+    
 
     const handleClose = async () => {
         const type = routeSelection === "없음" ? null : routeSelection;
