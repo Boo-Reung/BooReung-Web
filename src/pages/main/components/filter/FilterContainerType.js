@@ -7,7 +7,7 @@ const FilterContainerType = ({updateRouteSelection}) => {
     const handleSelect = (type) => {
         setSelected(type);
 
-        //부모 컴포넌트에 라우트 선택 정보 전달
+        // 2) 부모 컴포넌트Filter.js 에 라우트 선택 정보 전달 (Filter.js 상태 업데이트)
         updateRouteSelection(type);
     };
 

@@ -1,13 +1,25 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 
 const MaxBoxMember = ({ value, handleChange }) => {
+    const [inputValue, setInputValue] = useState(value || '');
+
+    const handleInputChange = (event) => {
+        const newValue = event.target.value;
+        if (!newValue || (newValue > 0 && newValue <= 10)) { // MaxBoxMember에 숫자를 입력하지 않았거나 0보다 크고 10보다 작은 값인 경우
+            setInputValue(newValue);
+            handleChange(event);
+        }
+    };
+
     return (
         <Container>
-            <MaxBoxInput
-                type="number"
-                value={value}
-                onChange={handleChange}
+            <MaxBoxInput 
+                type="text" 
+                inputMode="numeric" 
+                pattern="[0-9]*"
+                value={inputValue} 
+                onChange={handleInputChange} 
                 min="1"
                 max="10"
             />

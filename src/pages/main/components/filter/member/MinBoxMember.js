@@ -1,16 +1,29 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 
-const MinBoxMember = ({ value, handleChange, maxValue }) => {
+const MinBoxMember = ({ value, handleChange, maxValue, disabled }) => {
+    const [inputValue, setInputValue] = useState(value || '');
+
+    const handleInputChange = (event) => {
+        const newValue = event.target.value;
+        if (!newValue || (newValue >= 1 && newValue <= maxValue)) { // MinBoxMember에 숫자를 입력하지 않았거나 MaxBoxMember 값보다 작거나 같은 경우
+            setInputValue(newValue);
+            handleChange(event);
+        }
+    };
+
     return (
         <Container>
             <MinBoxInput
-                type="number"
-                value={value}
-                onChange={handleChange}
+                type="text"
+                inputMode="numeric" 
+                pattern="[0-9]*"
+                value={inputValue}
+                onChange={handleInputChange}
+                onFocus={(event) => event.target.select()} // 입력값 선택
                 min="1"
-                max={maxValue}
-                disabled={maxValue === 0} // 최대 인원이 설정되지 않았을 때 비활성화
+                max={maxValue || 10}
+                disabled={disabled} // MaxBoxMember의 값이 없을 때 비활성화
             />
         </Container>
     );

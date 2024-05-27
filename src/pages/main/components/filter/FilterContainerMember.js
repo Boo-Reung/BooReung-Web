@@ -1,11 +1,24 @@
-import React, {useState} from "react";
-import styled, {css} from "styled-components";
+import React, { useState, useEffect } from "react";
+import styled, { css } from "styled-components";
 import MinBoxMember from "./member/MinBoxMember";
 import MaxBoxMember from "./member/MaxBoxMember";
 
-const FilterContainerMember = () => {
-    const [maxValue, setMaxValue] = useState(1);
-    const [minValue, setMinValue] = useState(1);
+const FilterContainerMember = ({ minMember, maxMember, updateMinMemberSelection, updateMaxMemberSelection }) => {
+    const [maxValue, setMaxValue] = useState(maxMember || 1);
+    const [minValue, setMinValue] = useState(minMember || 1);
+    const [selected, setSelected] = useState("없음");
+
+    useEffect(() => {
+        if (selected === "없음") {
+            setMinValue(null);
+            setMaxValue(null);
+            updateMinMemberSelection(null);
+            updateMaxMemberSelection(null);
+        } else {
+            updateMinMemberSelection(minValue);
+            updateMaxMemberSelection(maxValue);
+        }
+    }, [selected, minValue, maxValue, updateMinMemberSelection, updateMaxMemberSelection]);
 
     const handleMaxChange = (event) => {
         let newValue = parseInt(event.target.value);
@@ -26,17 +39,14 @@ const FilterContainerMember = () => {
         }
     };
 
-    const [selected, setSelected] = useState("없음");
-
     const handleSelect = (type) => {
         setSelected(type);
     };
 
-        // 선택된 값에 따라 Container의 높이 설정
-        const containerHeight = selected === "없음" ? "3rem" : "11.09538rem";
+    const containerHeight = selected === "없음" ? "3rem" : "11.09538rem";
 
     return (
-        <Container style={{height : containerHeight}}>
+        <Container style={{ height: containerHeight }}>
             <SubTitleContainerRow>
                 <Subtitle>인원</Subtitle>
                 <ContentTextRow>
@@ -52,17 +62,16 @@ const FilterContainerMember = () => {
                     >
                         설정
                     </ContentText>
-                </ContentTextRow>               
+                </ContentTextRow>
             </SubTitleContainerRow>
             {selected === "있음" && (
-
                 <SelectContainerRow>
                     <MinMaxContainerColumn>
                         <Min>최소 인원</Min>
                         <Max>최대 인원</Max>
                     </MinMaxContainerColumn>
                     <MinMaxBoxContainerColumn>
-                        <MinBoxMember value={minValue} handleChange={handleMinChange} maxValue={maxValue} />
+                        <MinBoxMember value={minValue} handleChange={handleMinChange} maxValue={maxValue} disabled={maxValue === null} />
                         <MaxBoxMember value={maxValue} handleChange={handleMaxChange} />
                     </MinMaxBoxContainerColumn>
                     <MyeongContainerColumn>
@@ -82,12 +91,12 @@ const Container = styled.div`
     display: flex;
     flex-direction: column;
     gap: 0.8rem;
-`
+`;
 
 const SubTitleContainerRow = styled.div`
     display: flex;
     flex-direction: row;
-`
+`;
 
 const Subtitle = styled.div`
     width: 3.5rem;
@@ -100,7 +109,7 @@ const Subtitle = styled.div`
     font-weight: 700;
     line-height: normal;
     margin-top: auto;
-`
+`;
 
 const ContentTextRow = styled.div`
     display: flex;
@@ -135,13 +144,13 @@ const SelectContainerRow = styled.div`
     justify-content: space-between;
     align-items: center;
     margin-top: 1rem;
-`
+`;
 
 const MinMaxContainerColumn = styled.div`
     display: flex;
     flex-direction: column;
     gap: 1.3rem;
-`
+`;
 
 const Min = styled.div`
     width: 3.875rem;
@@ -153,7 +162,7 @@ const Min = styled.div`
     font-style: normal;
     font-weight: 400;
     line-height: normal;
-`
+`;
 
 const Max = styled.div`
     width: 3.875rem;
@@ -165,21 +174,20 @@ const Max = styled.div`
     font-style: normal;
     font-weight: 400;
     line-height: normal;
-`
+`;
+
 const MinMaxBoxContainerColumn = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 0.5rem;
-`
-
-
+`;
 
 const MyeongContainerColumn = styled.div`
     display: flex;
     flex-direction: column;
     gap: 1.3rem;
-`
+`;
 
 const Myeong = styled.div`
     width: 3.875rem;
@@ -191,10 +199,6 @@ const Myeong = styled.div`
     font-style: normal;
     font-weight: 400;
     line-height: normal;
-`
+`;
 
-
-
-
-
-export default FilterContainerMember
+export default FilterContainerMember;

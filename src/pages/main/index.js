@@ -61,7 +61,7 @@ const Main = () => {
                     <EnterCompleteButton text="성사된 카풀 정보 입력하러 가기!" width="20.5625rem" height="3.5rem" onClick={handleCompleteButtonClick}/>
                 </QuantityAndButtonsContainer>
                 <ContentContainer>
-                    <ListComponent title={"싸게 모현에서 이문 고고"} type={"통학"} client_gender={"남성"} dept={"백년관 정류장"} dest={"서현역"} carpool_date={"2023-11-09"} member={"5"} price={"5000"} onClick={handleDetailButtonClick}/>
+                    <ListComponent title={"하이"} type={"통학"} client_gender={"남성"} dept={"백년관 정류장"} dest={"서현역"} carpool_date={"2023-11-09"} member={"5"} price={"5000"} onClick={handleDetailButtonClick}/>
                     <ListComponent title={"싸게 모현에서 이문 고고"} type={"통학"} client_gender={"남성"} dept={"백년관 정류장"} dest={"서현역"} carpool_date={"2023-11-09"} member={"5"} price={"5000"} onClick={handleDetailButtonClick}/>
                     <ListComponent title={"싸게 모현에서 이문 고고"} type={"통학"} client_gender={"남성"} dept={"백년관 정류장"} dest={"서현역"} carpool_date={"2023-11-09"} member={"5"} price={"5000"} onClick={handleDetailButtonClick}/>
                 </ContentContainer>

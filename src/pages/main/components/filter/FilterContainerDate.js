@@ -3,12 +3,17 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import styled from "styled-components";
 
-const FilterContainerDate = () => {
+const FilterContainerDate = ({ updateDateSelection }) => {
     const [selectedDate, setSelectedDate] = useState(null);
     const [datePickerOpen, setDatePickerOpen] = useState(false);
 
     const toggleDatePicker = () => {
         setDatePickerOpen(!datePickerOpen);
+    };
+
+    const handleDateChange = (date) => {
+        setSelectedDate(date);
+        updateDateSelection(date);
     };
 
     return (
@@ -17,7 +22,7 @@ const FilterContainerDate = () => {
             <DatePickerContainer onClick={toggleDatePicker}>
                 <StyledDatePicker
                     selected={selectedDate}
-                    onChange={date => setSelectedDate(date)}
+                    onChange={handleDateChange}
                     showTimeSelect
                     dateFormat="yyyy-MM-dd HH:mm:ss"
                     open={datePickerOpen}
@@ -79,6 +84,5 @@ const StyledDatePicker = styled(DatePicker)`
         text-align: center;
     }
 `;
-
 
 export default FilterContainerDate;
