@@ -6,6 +6,8 @@ import MaxBoxPrice from "./price/MaxBoxPrice";
 
 
 const FilterContainerMember = () => {
+    const [minPrice, setMinPrice] = useState('');
+    const [maxPrice, setMaxPrice] = useState('');
 
     const [selected, setSelected] = useState("없음");
 
@@ -42,8 +44,8 @@ const FilterContainerMember = () => {
                         <Max>최대 가격</Max>
                     </MinMaxContainerColumn>
                     <MinMaxBoxContainerColumn>
-                        <MinBoxPrice/>
-                        <MaxBoxPrice/>
+                        <MinBoxPrice minPrice={minPrice} setMinPrice={setMinPrice} maxPrice={maxPrice} />
+                        <MaxBoxPrice maxPrice={maxPrice} setMaxPrice={setMaxPrice} />
                     </MinMaxBoxContainerColumn>
                     <WonContainerColumn>
                         <Won>원</Won>

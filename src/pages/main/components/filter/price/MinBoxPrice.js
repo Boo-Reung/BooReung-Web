@@ -1,35 +1,26 @@
-import React, { useState } from "react";
+import React from "react";
 import styled from "styled-components";
 
-const MinBoxPrice = () => {
-    const [value, setValue] = useState('');
-
+const MinBoxPrice = ({ minPrice, setMinPrice, maxPrice }) => {
     const handleChange = (event) => {
-        const newValue = event.target.value === '' ? '' : Math.max(0, Math.min(50000, Number(event.target.value)));
-        setValue(newValue);
+        const newValue = event.target.value === '' ? '' : Math.max(0, Math.min(maxPrice, Number(event.target.value)));
+        setMinPrice(newValue);
     };
 
     return (
-        <Container>
-            <MinBox>
-                <StyledInput
-                    type="number"
-                    value={value}
-                    onChange={handleChange}
-                    min="0"
-                    max="50000"
-                    placeholder="인당"
-                />
-            </MinBox>
-        </Container>
+        <MinBox>
+            <StyledInput
+                type="number"
+                value={minPrice}
+                onChange={handleChange}
+                min="0"
+                max={maxPrice}
+                placeholder="인당"
+                disabled={maxPrice === ''}
+            />
+        </MinBox>
     );
 };
-
-const Container = styled.div`
-    display: flex;
-    justify-content: center;
-    align-items: center;
-`;
 
 const MinBox = styled.div`
     width: 7.5rem;
@@ -60,12 +51,17 @@ const StyledInput = styled.input`
     }
 
     &::placeholder {
-        color: #d3d3d3; /* 연한 회색 */
+        color: #d3d3d3;
         text-align: center;
     }
 
     &:focus {
         outline: none;
+    }
+
+    &:disabled {
+        background: #f0f0f0;
+        cursor: not-allowed;
     }
 `;
 

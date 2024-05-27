@@ -1,38 +1,27 @@
-import React, {useState} from "react";
+import React from "react";
 import styled from "styled-components";
 
-const MaxBoxPrice = () => {
-
-    const [value, setValue] = useState('');
-
+const MaxBoxPrice = ({ maxPrice, setMaxPrice }) => {
     const handleChange = (event) => {
         const newValue = event.target.value === '' ? '' : Math.max(0, Math.min(50000, Number(event.target.value)));
-        setValue(newValue);
+        setMaxPrice(newValue);
     };
 
     return (
-        <Container>
-            <MinBox>
-                <StyledInput
-                    type="number"
-                    value={value}
-                    onChange={handleChange}
-                    min="0"
-                    max="50000"
-                    placeholder="인당"
-                />
-            </MinBox>
-        </Container>
+        <MaxBox>
+            <StyledInput
+                type="number"
+                value={maxPrice}
+                onChange={handleChange}
+                min="0"
+                max="50000"
+                placeholder="인당"
+            />
+        </MaxBox>
     );
 };
 
-const Container = styled.div`
-    display: flex;
-    justify-content: center;
-    align-items: center;
-`;
-
-const MinBox = styled.div`
+const MaxBox = styled.div`
     width: 7.5rem;
     height: 2.4375rem;
     flex-shrink: 0;
@@ -61,7 +50,7 @@ const StyledInput = styled.input`
     }
 
     &::placeholder {
-        color: #d3d3d3; /* 연한 회색 */
+        color: #d3d3d3;
         text-align: center;
     }
 
@@ -70,5 +59,4 @@ const StyledInput = styled.input`
     }
 `;
 
-
-export default MaxBoxPrice
+export default MaxBoxPrice;
