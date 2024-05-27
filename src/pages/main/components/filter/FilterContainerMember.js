@@ -4,6 +4,27 @@ import MinBoxMember from "./member/MinBoxMember";
 import MaxBoxMember from "./member/MaxBoxMember";
 
 const FilterContainerMember = () => {
+    const [maxValue, setMaxValue] = useState(1);
+    const [minValue, setMinValue] = useState(1);
+
+    const handleMaxChange = (event) => {
+        let newValue = parseInt(event.target.value);
+        if (!isNaN(newValue)) {
+            newValue = Math.min(10, Math.max(1, newValue));
+            setMaxValue(newValue);
+            if (minValue > newValue) {
+                setMinValue(newValue);
+            }
+        }
+    };
+
+    const handleMinChange = (event) => {
+        let newValue = parseInt(event.target.value);
+        if (!isNaN(newValue)) {
+            newValue = Math.min(maxValue, Math.max(1, newValue));
+            setMinValue(newValue);
+        }
+    };
 
     const [selected, setSelected] = useState("없음");
 
@@ -41,8 +62,8 @@ const FilterContainerMember = () => {
                         <Max>최대 인원</Max>
                     </MinMaxContainerColumn>
                     <MinMaxBoxContainerColumn>
-                        <MinBoxMember/>
-                        <MaxBoxMember/>
+                        <MinBoxMember value={minValue} handleChange={handleMinChange} maxValue={maxValue} />
+                        <MaxBoxMember value={maxValue} handleChange={handleMaxChange} />
                     </MinMaxBoxContainerColumn>
                     <MyeongContainerColumn>
                         <Myeong>명</Myeong>

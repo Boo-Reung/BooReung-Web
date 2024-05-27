@@ -1,30 +1,16 @@
-import React, { useState } from "react";
-import styled from "styled-components";
+import React from 'react';
+import styled from 'styled-components';
 
-const MinBoxMember = () => {
-    // 입력된 값의 상태를 관리합니다. 기본값은 1입니다.
-    const [value, setValue] = useState(1);
-
-    // 입력된 값이 유효한지 확인하는 함수
-    const handleChange = (event) => {
-        // 입력된 값
-        let newValue = parseInt(event.target.value);
-
-        // 입력된 값이 숫자인지 확인하고, 1에서 10 사이의 값으로 제한합니다.
-        if (!isNaN(newValue)) {
-            newValue = Math.min(10, Math.max(1, newValue));
-            setValue(newValue);
-        }
-    };
-
+const MinBoxMember = ({ value, handleChange, maxValue }) => {
     return (
         <Container>
-            <MaxBoxInput
+            <MinBoxInput
                 type="number"
                 value={value}
                 onChange={handleChange}
-                min="1" // 최소값은 1입니다.
-                max="10" // 최대값은 10입니다.
+                min="1"
+                max={maxValue}
+                disabled={maxValue === 0} // 최대 인원이 설정되지 않았을 때 비활성화
             />
         </Container>
     );
@@ -34,7 +20,7 @@ const Container = styled.div`
     /* 필요한 스타일을 여기에 추가하세요 */
 `;
 
-const MaxBoxInput = styled.input`
+const MinBoxInput = styled.input`
     width: 7.5rem;
     height: 2.4375rem;
     flex-shrink: 0;
