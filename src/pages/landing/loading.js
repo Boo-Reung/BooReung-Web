@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import AppBarLanding from "../../components/AppBarLanding";
 import { Navigate } from "react-router-dom";
+import axios from "axios";
 
 
 const BackgroundImage2 = styled.div`
@@ -72,52 +73,50 @@ const LoadingText = styled.p`
 
 
 
-
 const Loading = () => {
-    const [isLoading, setIsLoading] = useState(true);
-
-    useEffect(() => {
-      setTimeout(() => {
-        setIsLoading(false);
-      }, 2000);
-    }, []);
-
-  const [randomItem, setRandomItem] = useState("");
-
-  const getRandomItem = () => {
-    const items = [
-      "차량번호가 다르면 탑승하지 않는게 좋습니다.",
-      "정보와 다른 주최자가 미심쩍은 경우 탑승에 주의해주세요.",
-      "탑승 전 송금을 완료하세요!",
-      "탑승 전 카풀 제공자의 음주 여부를 확인해 주세요!",
-      "사전에 합의된 탑승인원, 경로, 금액을 지키는 매너를 보여주세요!",
-      "Boo릉은 카풀중개 서비스일 뿐이며 관련범죄 발생시 책임지지 않습니다."
-    ];
-    const randomIndex = Math.floor(Math.random() * items.length);
-    return items[randomIndex];
-  };
+  const [isLoading, setIsLoading] = useState(true);
+  const [content, setContent] = useState("");
 
   useEffect(() => {
-    setRandomItem(getRandomItem());
+    const getRandomLists = () => {
+      axios.get('https://nkey18.pythonanywhere.com/api/carpools/caution/')
+        .then(response => {
+          setContent(response.data.content); // 함수 호출로 상태 업데이트
+          console.log("Content:", response.data.content);
+        })
+        .catch(error => {
+          console.error("Error fetching content:", error);
+        });
+    }
+    getRandomLists();
+
+    // 5초 후 로딩 상태 변경
+    const timer = setTimeout(() => {
+      setIsLoading(false);
+    }, 5000); // 5초 타이머 설정
+
+    return () => clearTimeout(timer); // 컴포넌트 언마운트 시 타이머 해제
   }, []);
 
+  if (isLoading) {
+    return (
+      <Container>
+        <AppBarLanding />
+        <BackgroundImage2 />
+        <LoadingTextTitle>Boo릉 주의사항 알고계셨나요?</LoadingTextTitle>
+        <StyledDiv>{content}</StyledDiv>
+        <LoadingText>Loading..</LoadingText>
+        <LoadingBarContainer><LoadingProgressBar /></LoadingBarContainer>
+      </Container>
+    );
+  } else {
+    return <Navigate to="/list" />;
+  }
+};
 
- if (isLoading){
-  return (
-    <Container>
-      <AppBarLanding />
-      <BackgroundImage2 />
-      <LoadingTextTitle>Boo릉 주의사항 알고계셨나요?</LoadingTextTitle>
-      <StyledDiv>{randomItem}</StyledDiv>
-      <LoadingText>Loading..</LoadingText>
-      <LoadingBarContainer><LoadingProgressBar /></LoadingBarContainer>
-    </Container> 
-  );} 
-  else {
-  <Navigate to="/main" />;
-    ;}
-}; 
+const Container = styled.div`
 
-const Container = styled.div``
+`;
+
 
 export default Loading;

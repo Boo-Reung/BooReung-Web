@@ -3,6 +3,14 @@ import styled from "styled-components";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import Select from "./select";
+import InputTitles from "./title/InputTitles"
+import InputNames from "./title/InputNames"
+import InputMenbers from "./title/InputMenber";
+import InputPrices from "./title/InputPrice";
+import InputCarinfos from "./title/InputCarinfo";
+import InputSelfs from "./title/InputSelf";
+import InputKakaos from "./title/InputKakao";
+import axios from "axios";
 
 
 const HostingPage = () => {
@@ -13,12 +21,44 @@ const HostingPage = () => {
   const [applicableGenderOption, setApplicableGenderOption] = useState(null);
   const [selectedDate, setSelectedDate] = useState(null);
 
+  // const [TitleValue, setTitleValue] = useState(null); //질문: 굳이 state를 사용해야 하는가?
+  // const [NameValue, setNameValue] = useState(null);
+  // const [MemberValue, setMemberValue] = useState(null);
+  // const [PriceValue, setPriceValue] = useState(null);
+  // const [CarinfoValue, setCarinfoValue] = useState(null);
+  // const [ContentValue, setContentValue] = useState(null);
+  // const [OpenkakaoValue, setOpenkakaoValue] = useState(null);
+
+
+
+  // const postlist = {
+  //   host_name:  {NameValue},
+	// 	title: {TitleValue}, // 질문: 변수를 지정 안하고 props값만 있으면 안되는건지..?
+	// 	"type": "여행",
+	// 	"client_gender": "남성",
+	// 	"host_gender": "남자",
+	// 	"dept": "모현",
+	// 	"dest": "이문동", 
+	// 	member : {MemberValue},
+	// 	price : {PriceValue},
+	// 	car_info : {CarinfoValue},
+	// 	content : {ContentValue},
+	// 	open_kakao : {OpenkakaoValue} ,
+	// 	"carpool_date": "2023-11-09T22:59:53.173811+09:00"
+  // }
+  // //axios post부분 
+  // try {
+  //   const response = await axios.post(' http://nkey18.pythonanywhere.com/', body);
+  //   onClose();
+  //   console.log(response.data);
+  //   } catch (error) {
+  //   console.error('Fetch 작업 중 문제가 발생했습니다:', error);
+  //   }
+
   return (
     <PageWrapper>
-        <PageTitle>제목을 입력하세요</PageTitle>
-        <Input type="text" placeholder="10글자 이내로 입력하세요" />
-        <PageTitle>이름을 입력하세요</PageTitle>
-        <Input type="text" placeholder="5글자 이내로 입력하세요" />
+        <InputTitles />
+        <InputNames />
         
         <PageTitle>목적</PageTitle>
         <Select
@@ -66,21 +106,11 @@ const HostingPage = () => {
           onOptionClick={setApplicableGenderOption}
         />
 
-        <PageTitle>모집 인원 (최대)</PageTitle>
-        <Input type="text" placeholder="5글자 이내로 입력하세요" />
-
-        <PageTitle>가격 (1인당)</PageTitle>
-        <Input type="text" placeholder="5글자 이내로 입력하세요" />
-
-        <PageTitle>차량정보</PageTitle>
-        <Input type="text" placeholder="ex) 검정카니발 34오 0214" />
- 
-        <PageTitle>내용</PageTitle>
-        <BigInput placeholder="간단한 소개글을 작성하세요(50자 이내)" />
-
-        <PageTitle>오픈 카톡방 링크</PageTitle>
-        <Input type="text" placeholder="오픈 카톡방 링크를 입력하세요" />
-
+        <InputMenbers />
+        <InputPrices />
+        <InputCarinfos />
+        <InputSelfs ContentValue = {"제목"}/>
+        <InputKakaos />
     </PageWrapper>
   );
 };
@@ -105,38 +135,6 @@ padding-top: 0.88rem;
 color: #000;
 font-family: "Gowun Batang";
 `
-
-const Input = styled.input`
-  width: 359px;
-  height: 61px;
-  flex-shrink: 0;
-  border-radius: 10px;
-  border: 1px solid #9BBEC8;
-  background: rgba(210, 236, 250, 0.00);
-  margin-top: 0.88rem;
-  padding: 19px 33px 19px 27px;
-
-  &::placeholder {
-    font-size: 1rem;
-`;
-
-const BigInput = styled.textarea`
-  width: 359px;
-  height: 246px;
-  flex-shrink: 0;
-  border-radius: 10px;
-  border: 1px solid #9BBEC8;
-  background: rgba(210, 236, 250, 0.00);
-  margin-top: 0.88rem;
-  padding: 19px 33px 19px 27px;
-  box-sizing: border-box;
-  resize: none; 
-  font-size: 1rem;
-
-  &::placeholder {
-    font-size: 1rem;
-    vertical-align: top;
-`;
 
 const DatePickerWrapper = styled.div`
   width: 359px;

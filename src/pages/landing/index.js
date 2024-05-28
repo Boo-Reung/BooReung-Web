@@ -6,23 +6,23 @@ import { useNavigate } from "react-router-dom";
 
 
 const BackgroundImage1 = styled.div`
-  width: 228px;
-  height: 222px;
+  width: 14.25rem;
+  height: 13.875rem;
   background-image: url('https://i.imgur.com/O8FztUI.jpg');
   background-size: cover;
   background-position: center;
-  transform: translate(80px, 50px);
+  transform: translate(5rem, 3.125rem);
 `;
 
 //빈 공간 표현하고 싶어서 중간에 margine auto 넣었습니다.
 const TextContainer = styled.div`
     text-align: center;
     border-radius: 0.625rem;
-    border: 3px solid #003E5F;
+    border: 0.188rem solid #003E5F;
     background: rgba(141, 209, 245, 0.28);
-    padding: 10px;
-    margin-bottom: 10px;
-    transform: translate(0,70px);
+    padding: 0.625rem;
+    margin-bottom: 0.625rem;
+    transform: translate(0,4.375rem);
     width : 90%; 
     margin: 0 auto;
 
