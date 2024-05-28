@@ -1,7 +1,8 @@
 import React from "react";
 import styled from "styled-components";
-import AppBarLanding from "../../components/AppBarLanding"
-import CommonButton from "../../components/CommonButton"
+// import { useNavigate } from "react-router-dom";
+import AppBarLanding from "../../components/AppBarLanding";
+import CommonButton from "../../components/CommonButton";
 import { useNavigate } from "react-router-dom";
 
 

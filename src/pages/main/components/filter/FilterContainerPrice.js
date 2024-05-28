@@ -1,27 +1,52 @@
-import React from "react";
-import styled from "styled-components";
+import React, {useState} from "react";
+import styled, {css} from "styled-components";
+import MinBoxPrice from "./price/MinBoxPrice";
+import MaxBoxPrice from "./price/MaxBoxPrice";
 
-const FilterContainerMember = () => {
+const FilterContainerPrice = ({ minPrice, maxPrice, updateMinPriceSelection, updateMaxPriceSelection }) => {
+    const [selected, setSelected] = useState("없음");
+
+    const handleSelect = (type) => {
+        setSelected(type);
+    };
+
+    const containerHeight = selected === "없음" ? "3rem" : "11.09538rem";
+
     return (
-        <Container>
+        <Container style={{ height: containerHeight }}>
             <SubTitleContainerRow>
                 <Subtitle>가격</Subtitle>
-                <ContentText>없음</ContentText>                
+                <ContentTextRow>
+                    <ContentText
+                        isSelected={selected === "없음"}
+                        onClick={() => handleSelect("없음")}
+                    >
+                        무관
+                    </ContentText>
+                    <ContentText
+                        isSelected={selected === "있음"}
+                        onClick={() => handleSelect("있음")}
+                    >
+                        설정
+                    </ContentText>
+                </ContentTextRow>
             </SubTitleContainerRow>
-            <SelectContainerRow>
-                <MinMaxContainerColumn>
-                    <Min>최소 가격</Min>
-                    <Max>최대 가격</Max>
-                </MinMaxContainerColumn>
-                <MinMaxBoxContainerColumn>
-                    <MinBox/>
-                    <MaxBox/>
-                </MinMaxBoxContainerColumn>
-                <WonContainerColumn>
-                    <Won>원</Won>
-                    <Won>원</Won>
-                </WonContainerColumn>
-            </SelectContainerRow>
+            {selected === "있음" && (
+                <SelectContainerRow>
+                    <MinMaxContainerColumn>
+                        <Min>최소 가격</Min>
+                        <Max>최대 가격</Max>
+                    </MinMaxContainerColumn>
+                    <MinMaxBoxContainerColumn>
+                        <MinBoxPrice minPrice={minPrice} setMinPrice={updateMinPriceSelection} maxPrice={maxPrice} />
+                        <MaxBoxPrice maxPrice={maxPrice} setMaxPrice={updateMaxPriceSelection} />
+                    </MinMaxBoxContainerColumn>
+                    <WonContainerColumn>
+                        <Won>원</Won>
+                        <Won>원</Won>
+                    </WonContainerColumn>
+                </SelectContainerRow>
+            )}
         </Container>
     );
 };
@@ -33,12 +58,12 @@ const Container = styled.div`
     display: flex;
     flex-direction: column;
     gap: 0.8rem;
-`
+`;
 
 const SubTitleContainerRow = styled.div`
     display: flex;
     flex-direction: row;
-`
+`;
 
 const Subtitle = styled.div`
     width: 3.5rem;
@@ -51,7 +76,13 @@ const Subtitle = styled.div`
     font-weight: 700;
     line-height: normal;
     margin-top: auto;
-`
+`;
+
+const ContentTextRow = styled.div`
+    display: flex;
+    flex-direction: row;
+    gap: 0.7rem;
+`;
 
 const ContentText = styled.div`
     width: 6rem;
@@ -63,20 +94,30 @@ const ContentText = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
-`
+    cursor: pointer;
+
+    ${({ isSelected }) =>
+        isSelected &&
+        css`
+            background: #003e5f;
+            color: white;
+            border: 1px solid #003e5f;
+        `}
+`;
 
 const SelectContainerRow = styled.div`
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-`
+    margin-top: 1rem;
+`;
 
 const MinMaxContainerColumn = styled.div`
     display: flex;
     flex-direction: column;
     gap: 1.3rem;
-`
+`;
 
 const Min = styled.div`
     width: 3.875rem;
@@ -88,7 +129,7 @@ const Min = styled.div`
     font-style: normal;
     font-weight: 400;
     line-height: normal;
-`
+`;
 
 const Max = styled.div`
     width: 3.875rem;
@@ -100,42 +141,20 @@ const Max = styled.div`
     font-style: normal;
     font-weight: 400;
     line-height: normal;
-`
+`;
+
 const MinMaxBoxContainerColumn = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 0.5rem;
-`
-
-const MinBox = styled.div`
-    width: 7.5rem;
-    height: 2.4375rem;
-    flex-shrink: 0;
-    border-radius: 0.625rem;
-    border: 1px solid #9BBEC8;
-    background: rgba(210, 236, 250, 0.00);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-`
-const MaxBox = styled.div`
-    width: 7.5rem;
-    height: 2.4375rem;
-    flex-shrink: 0;
-    border-radius: 0.625rem;
-    border: 1px solid #9BBEC8;
-    background: rgba(210, 236, 250, 0.00);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-`
+`;
 
 const WonContainerColumn = styled.div`
     display: flex;
     flex-direction: column;
     gap: 1.3rem;
-`
+`;
 
 const Won = styled.div`
     width: 3.875rem;
@@ -147,10 +166,6 @@ const Won = styled.div`
     font-style: normal;
     font-weight: 400;
     line-height: normal;
-`
+`;
 
-
-
-
-
-export default FilterContainerMember
+export default FilterContainerPrice;
