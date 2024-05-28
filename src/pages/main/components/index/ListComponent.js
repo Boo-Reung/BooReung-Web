@@ -11,9 +11,9 @@ const ListComponent = ({title, type, client_gender, dept, dest, member, price, c
     
     const formattedDate = `카풀 날짜 : ${carpool_date}`
 
-    const formattedMember = `인원 : ${member} ~ ${member}원`
+    const formattedMember = `인원 : ${member} 명`
 
-    const formattedPrice = `가격(1인당) : ${price} ~ ${price} 원`
+    const formattedPrice = `가격(1인당) : ${price} 원`
     return(
         <Container onClick={onClick}>
             <Title>{title}</Title>
