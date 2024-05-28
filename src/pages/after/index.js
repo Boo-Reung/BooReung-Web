@@ -51,12 +51,10 @@ overflow-x: hidden;
 const ContentContainer = styled.div`
 flex:1 ;
 width: 100%
-max-width: 400px;
-`
+`;
 
 const AppBarWrapper =styled.div`
  width: 100%
- flex-shrink:0;
 `;
 
 const TitleContainer = styled.div`

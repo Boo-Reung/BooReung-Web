@@ -27,7 +27,7 @@ const Detail = () => {
         navigate("/list");
     };
 
-    useEffect(() => {
+    /*useEffect(() => {
         const fetchData = async () => {
             try {
                 const response = await axios.get(`기본주소url/~/${id}`);
@@ -40,7 +40,7 @@ const Detail = () => {
         };
 
         fetchData();
-    }, [id]);
+    }, [id]); */
 
     if (loading) {
         return <div>Loading...</div>;
