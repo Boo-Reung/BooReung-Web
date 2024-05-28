@@ -38,7 +38,8 @@ const After = () => {
 
 const Container = styled.div`
 width: 390px;
-height: 1087px;
+max-width: 390px;
+height: 844px;
 background-color: #F6FCFF;
 display : flex;
 flex-direction:column;
