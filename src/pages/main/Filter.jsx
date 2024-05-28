@@ -52,7 +52,18 @@ const Filter = ({ show, onClose }) => {
         const dateOnly = isoString.split('T')[0]; // "YYYY-MM-DD" 형식의 날짜 부분 추출
         return dateOnly;
     };
-    
+
+    const resetSelections = () => {
+        setRouteSelection("없음");
+        setGenderSelection(null);
+        setDeptSelection(null);
+        setDestSelection(null);
+        setMinMemberSelection(null);
+        setMaxMemberSelection(null);
+        setMinPriceSelection(null);
+        setMaxPriceSelection(null);
+        setDateSelection(null);
+    };
 
     const handleClose = async () => {
         const type = routeSelection === "없음" ? null : routeSelection;
@@ -83,6 +94,8 @@ const Filter = ({ show, onClose }) => {
             console.log(response.data);
         } catch (error) {
             console.error('Fetch 작업 중 문제가 발생했습니다:', error);
+        } finally {
+            resetSelections();
         }
     };
 

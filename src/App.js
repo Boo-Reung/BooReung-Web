@@ -1,10 +1,10 @@
 import { Route, Routes } from "react-router-dom";
 
 //pages
-import Landing from "./pages/landing";
+import Landing from "./pages/landing/";
 import Loading from "./pages/landing/loading";
 
-import List from "./pages/main";
+import List from "./pages/main/list";
 import Detail from "./pages/main/detail";
 
 import Hosting from "./pages/hosting";
