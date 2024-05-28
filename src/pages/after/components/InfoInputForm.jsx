@@ -20,7 +20,7 @@ const InfoInputForm = () => {
             
             <Section>
             <SectionTitle>카풀 정보 입력</SectionTitle>
-            <Label>카풀 게시글 번호를 입력하세요.</Label>
+            <Label>카풀 게시글 번호를 입력하세요</Label>
             <Input type="text" placeholder="ex) 1004" />
             <Label>카풀 주최자 이름을 입력하세요</Label>
             <Input type = "text" placeholder = "5글자 이내로 입력하세요"/>
@@ -47,7 +47,7 @@ const FormContainer = styled.div`
 display : flex;
 flex-direction:column;
 align-items: flex-start;
-padding: 1rem 1rem;
+padding: 1.3rem 1.3rem;
 width: 100%;
 max-width: 400px;
 margin: 0 auto;
@@ -60,7 +60,7 @@ align-items: flex-start;
 margin-bottom: 1.75rem;
 `
 const SectionTitle = styled.h1`
-width: 11.27344rem;
+width: 100%;
 height: 1.825rem;
 transform: rotate(0.075deg);
 margin: 1rem 0 ;
@@ -75,13 +75,13 @@ letter-spacing: -0.0875rem;
 `
 
 const Label = styled.label`
-font-size: 1.375rem;
+font-size: 1.3rem;
 margin:0.4rem 0;
 padding-top: 0.88rem;
 `
 
 const Input = styled.input`
-width: 22.4375rem;
+width: 100%;
 height: 3.8125rem;
 flex-shrink: 0;
 border-radius: 0.625rem;
@@ -95,7 +95,7 @@ padding: 19px 33px 19px 27px;
 `
 
 const DateWrapper = styled.div`
-width: 22.4375rem;
+width: 100%;
 height: 3.8125rem;
 flex-shrink: 0;
 border-radius: 10px;
