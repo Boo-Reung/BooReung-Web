@@ -22,6 +22,7 @@ const Select = ({ options, selectedOption, onOptionClick }) => {
 
 const SelectWrapper = styled.div`
   display: flex;
+  width: 100%;
   flex-direction: column;
   align-items: flex-start;
   gap: 10px;
@@ -29,13 +30,19 @@ const SelectWrapper = styled.div`
 
 const ButtonContainer = styled.div`
   display: flex;
-  gap: 25px;
+  width: 100%;
+  flex-wrap: wrap;
+  gap: 10px;
   margin-top: 0.88rem;
 `;
 
 const OptionButton = styled.button`
+  flex:1 ;
   width: 164px;
   height: 61px;
+  display:flex;
+  justify-content: center;
+  align-items:center;
   flex-shrink: 0;
   border: 1px solid #9BBEC8;
   border-radius: 10px;
