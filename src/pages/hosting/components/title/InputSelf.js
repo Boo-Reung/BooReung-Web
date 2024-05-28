@@ -25,7 +25,7 @@ const PageTitle = styled.h1`
 `
 
 const InputSelf = styled.textarea`
-  width: 359px;
+  width: 21.2rem;
   height: 246px;
   flex-shrink: 0;
   border-radius: 10px;

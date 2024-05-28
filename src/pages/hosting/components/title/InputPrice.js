@@ -25,7 +25,7 @@ const PageTitle = styled.h1`
 `
 
 const InputPrice = styled.input`
-  width: 359px;
+  width: 21.2rem;
   height: 61px;
   flex-shrink: 0;
   border-radius: 10px;

@@ -25,7 +25,7 @@ font-family: "Gowun Batang";
 `
 
 const InputMember = styled.input`
-  width: 359px;
+  width: 21.2rem;
   height: 61px;
   flex-shrink: 0;
   border-radius: 10px;

@@ -78,6 +78,7 @@ export default Main;
 const RootContainer = styled.div`
     width: 390px;
     max-width: 390px;
+    height: 844px;
     margin: auto;
     box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
     background-color: #F6FCFF;
@@ -87,6 +88,7 @@ const RootContainer = styled.div`
     align-items: center;
     overflow-y: auto; /* 스크롤 가능하게 설정 */
     padding-bottom: 1.5rem;
+    overflow-x: hidden;
 `;
 
 const Container = styled.div`
