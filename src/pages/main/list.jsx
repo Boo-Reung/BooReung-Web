@@ -16,9 +16,10 @@ const List = () => {
     const [showFilterModal, setShowFilterModal] = useState(false);
     const [registeredPoolCount, setRegisteredPoolCount] = useState(0);
     const [carpools, setCarpools] = useState([]); // 초기 상태를 빈 배열로 설정
-    const [childResponse, setChildResponse] = useState(null);
+    const [childResponse, setChildResponse] = useState({"carpools": []});
 
     console.log(childResponse)
+    // setRegisteredPoolCount(childResponse["carpools"].length);
 
     const responseChange = (newResponse) => {
         setChildResponse(newResponse);
@@ -57,7 +58,7 @@ const List = () => {
         };
         GetCarpoolList();
         console.log("carpools state:", childResponse); // 상태가 업데이트될 때마다 콘솔에 출력
-    },[registeredPoolCount]);
+    },[]);
 
     // 백엔드 API 호출을 통해 등록된 카풀 수 가져오기
     
@@ -75,7 +76,7 @@ const List = () => {
                 </SearchContainer>
                 <QuantityAndButtonsContainer>
                     <RowContainer>
-                        <RegisteredNum>등록된 카풀 <br /> 개수: {registeredPoolCount}개</RegisteredNum>
+                        <RegisteredNum>등록된 카풀 <br /> 개수: {childResponse["carpools"].length}개</RegisteredNum>
                         <HostingButton text="카풀 주최하기" width="12.6875rem" height = "3.5rem" onClick={handleHostingButtonClick}/>
                     </RowContainer>
                     <EnterCompleteButton text="성사된 카풀 정보 입력하러 가기!" width="20.5625rem" height="3.5rem" onClick={handleCompleteButtonClick}/>
