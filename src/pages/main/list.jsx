@@ -16,6 +16,13 @@ const List = () => {
     const [showFilterModal, setShowFilterModal] = useState(false);
     const [registeredPoolCount, setRegisteredPoolCount] = useState(0);
     const [carpools, setCarpools] = useState([]); // 초기 상태를 빈 배열로 설정
+    const [childResponse, setChildResponse] = useState(null);
+
+    console.log(childResponse)
+
+    const responseChange = (newResponse) => {
+        setChildResponse(newResponse);
+    }
 
     const toggleFilterModal = () => {
         setShowFilterModal(!showFilterModal);
@@ -34,24 +41,28 @@ const List = () => {
     const handleDetailButtonClick = () => {
         navigate("/detail")
     }
-
     useEffect(() => {
-        // 백엔드 API 호출을 통해 등록된 카풀 수 가져오기
-        axios.get("http://nkey18.pythonanywhere.com/api/carpools/full_list/")
+        const GetCarpoolList = () => {
+            axios.get("http://nkey18.pythonanywhere.com/api/carpools/full_list/")
             .then((response) => {
-                console.log("API response:", response); // 응답을 콘솔에 출력하여 확인
+                console.log("API response:", response); // 응답을 콘솔에 출력하여 확인 
                 setRegisteredPoolCount(response.data.length);
                 setCarpools(response.data); // carpools 상태 업데이트
+                setChildResponse(response.data);
                 console.log("Updated carpools:", response.data); // 상태 업데이트 후 콘솔 출력
             })
             .catch((error) => {
                 console.error("Error fetching pool count:", error);
             });
-    }, []);
+        };
+        GetCarpoolList();
+        console.log("carpools state:", childResponse); // 상태가 업데이트될 때마다 콘솔에 출력
+    },[registeredPoolCount]);
 
-    useEffect(() => {
-        console.log("carpools state:", carpools); // 상태가 업데이트될 때마다 콘솔에 출력
-    }, [carpools]);
+    // 백엔드 API 호출을 통해 등록된 카풀 수 가져오기
+    
+
+    
     
 
     return (
@@ -70,22 +81,15 @@ const List = () => {
                     <EnterCompleteButton text="성사된 카풀 정보 입력하러 가기!" width="20.5625rem" height="3.5rem" onClick={handleCompleteButtonClick}/>
                 </QuantityAndButtonsContainer>
                 <ContentContainer>
-                    {carpools.map((carpool) => (
+                    {childResponse && childResponse["carpools"]&&childResponse["carpools"].map((carpool,index) => (
                         <ListComponent
-                            key={carpool.id}
-                            title={carpool.title}
-                            type={carpool.type}
-                            client_gender={carpool.client_gender}
-                            dept={carpool.dept}
-                            dest={carpool.dest}
-                            carpool_date={carpool.carpool_date}
-                            member={carpool.member}
-                            price={carpool.price}
+                            key={index}
+                            carpool_info={carpool}
                             onClick={handleDetailButtonClick}
                         />
                     ))}
                 </ContentContainer>
-                <Filter show={showFilterModal} onClose={toggleFilterModal} />
+                <Filter responseStateChange={responseChange} show={showFilterModal} onClose={toggleFilterModal} />
             </Container>
         </RootContainer>
 
