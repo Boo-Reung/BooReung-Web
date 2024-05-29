@@ -150,7 +150,7 @@ const ModalContainer = styled.div`
     border-radius: 5px;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
     width: 358px;
-    height: 800px;
+    height: 900px;
     overflow-y: auto;
     position: relative;
     display: flex;

@@ -1,30 +1,37 @@
-import React from "react";
+import React, {useState } from "react";
+import Dropdown1 from "./DropDown1";
+import Dropdown2 from "./DropDown2";
+import Dropdown3 from "./DropDown3";
+import Dropdown4 from "./DropDown4";
 import styled from "styled-components";
-import DownArrow from "../../../../../assets/images/DownArrow.svg"
 
 
-const RouteDropDown = () => {
-
+function RouteDropDown() {
+    const [selectedReg, setSelectedReg] = useState(null);
+    const [selectedValue, setSelectedValue] = useState(null); // 새로운 state 추가
+  
     return (
+        <DropBox>
         <DropDownContainerRow>
-        <ArrowContainerColumn>
-            <Start>출발</Start>
-            <Arrow src={DownArrow} alt="arrow" />
-            <Arrive>도착</Arrive>
-        </ArrowContainerColumn>
-        <RegionContainerColumn>
-            <Region>지역</Region>
-            <DeptBoxRegion />
-            <DestBoxRegion />
-        </RegionContainerColumn>
-        <BusStopContainerColumn>
-            <BusStop>정류장</BusStop>
-            <DeptBoxBusStop />
-            <DestBoxBusStop />
-        </BusStopContainerColumn>
+        <Start>출발</Start>
+        <Dropdown1 onSelect={(reg) => setSelectedReg(reg)} />
+        <Dropdown2 selectedReg={selectedReg} onSelect={(value) => setSelectedValue(value)} /> {/* onSelect prop 추가 */}
         </DropDownContainerRow>
+        <DropDownContainerRow>
+        <Arrive>도착</Arrive>
+        <Dropdown3 onSelect={(reg) => setSelectedReg(reg)} />
+        <Dropdown4 selectedReg={selectedReg} onSelect={(value) => setSelectedValue(value)} /> {/* onSelect prop 추가 */}    
+        </DropDownContainerRow>
+        </DropBox>
     );
-};
+  };
+  
+
+export default RouteDropDown;
+
+const DropBox = styled.div`
+margin-top: 2rem;
+`
 
 const DropDownContainerRow = styled.div`
     display: flex;
@@ -33,13 +40,7 @@ const DropDownContainerRow = styled.div`
     align-items: center;
 `;
 
-const ArrowContainerColumn = styled.div`
-    display: flex;
-    flex-direction: column;
-    margin-top: auto;
-`;
-
-const Start = styled.div`
+const Start = styled.h1`
     width: 1.875rem;
     height: 1.34488rem;
     flex-shrink: 0;
@@ -50,14 +51,7 @@ const Start = styled.div`
     font-weight: 400;
     line-height: normal;
 `;
-
-const Arrow = styled.img`
-    width: 1.32263rem;
-    height: 2.39694rem;
-    flex-shrink: 0;
-`;
-
-const Arrive = styled.div`
+const Arrive = styled.h1`
     width: 1.875rem;
     height: 1.34488rem;
     flex-shrink: 0;
@@ -68,69 +62,3 @@ const Arrive = styled.div`
     font-weight: 400;
     line-height: normal;
 `;
-
-const RegionContainerColumn = styled.div`
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 0.5rem;
-`;
-
-const BusStopContainerColumn = styled.div`
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 0.5rem;
-`;
-
-const Region = styled.div``;
-
-const BusStop = styled.div``;
-
-const DeptBoxRegion = styled.div`
-    width: 7.5rem;
-    height: 2.4375rem;
-    flex-shrink: 0;
-    border-radius: 0.625rem;
-    border: 1px solid #9bbec8;
-    background: rgba(210, 236, 250, 0.00);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-`;
-
-const DestBoxRegion = styled.div`
-    width: 7.5rem;
-    height: 2.4375rem;
-    flex-shrink: 0;
-    border-radius: 0.625rem;
-    border: 1px solid #9bbec8;
-    background: rgba(210, 236, 250, 0.00);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-`;
-
-const DeptBoxBusStop = styled.div`
-    width: 7.5rem;
-    height: 2.4375rem;
-    flex-shrink: 0;
-    border-radius: 0.625rem;
-    border: 1px solid #9bbec8;
-    background: rgba(210, 236, 250, 0.00);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-`;
-
-const DestBoxBusStop = styled.div`
-    width: 7.5rem;
-    height: 2.4375rem;
-    flex-shrink: 0;
-    border-radius: 0.625rem;
-    border: 1px solid #9bbec8;
-    background: rgba(210, 236, 250, 0.00);
-    display: flex;
-`;
-
-export default RouteDropDown

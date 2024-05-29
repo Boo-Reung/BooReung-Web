@@ -20,7 +20,7 @@ const FilterContainerRoute = ({ routeSelection }) => {
     };
 
         // 선택된 값에 따라 Container의 높이 설정
-        const containerHeight = selected === "없음" ? "3rem" : "11.09538rem";
+        const containerHeight = selected === "없음" ? "3rem" : "18rem";
 
     return (
         <Container style={{height : containerHeight}}>
