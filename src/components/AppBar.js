@@ -1,19 +1,26 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
+import Modal from "./WarningModal";
 
 const AppBar = () => {
-    
     const navigate = useNavigate();
-    
-    // 로고 클릭시 홈화면으로 이동
+    const [isModalOpen, setIsModalOpen] = useState(false);
+
     const goToHome = () => {
-        console.log("gotohome")
         navigate("/");
     };
-    // back버튼 클릭시 이전 페이지로 이동
+
     const goBack = () => {
         window.history.back();
+    };
+
+    const openModal = () => {
+        setIsModalOpen(true);
+    };
+
+    const closeModal = () => {
+        setIsModalOpen(false);
     };
 
     return (
@@ -28,7 +35,9 @@ const AppBar = () => {
             />
             <Warning
                 src="/images/warning_icon.png"
+                onClick={openModal}
             />
+            {isModalOpen && <Modal onClose={closeModal} />}
         </Container>
     );
 };
@@ -38,10 +47,9 @@ export default AppBar;
 const Container = styled.div`
     width: 24.375rem;
     height: 4.375rem;
-    display: flex; 
+    display: flex;
     flex-direction: row;
-    
-    align-items: center; /* 수직 가운데 정렬 */
+    align-items: center;
     justify-content: space-around;
     background: #E3F3FB;
 `;
@@ -51,14 +59,9 @@ const BackButton = styled.img`
     height: 1.25rem;
     margin-left: 0.62rem;
     cursor: pointer;
-
-`
+`;
 
 const Logo = styled.img`
-
-    // 부모 요소(Container: relative)의 가로 세로 중앙에 절대 위치에 고정
-    left: 50%;
-    top: 50%;
     cursor: pointer;
 `;
 
@@ -68,5 +71,4 @@ const Warning = styled.img`
     flex-shrink: 0;
     margin-left: 0.62rem;
     cursor: pointer;
-
-`
+`;
