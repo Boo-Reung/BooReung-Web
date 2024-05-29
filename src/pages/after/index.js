@@ -75,36 +75,51 @@ const After = () => {
     };
 
     return (
-        <Container>
-            <ContentContainer>
-                <AppBarWrapper>
-                    <AppBar />
-                </AppBarWrapper>
+        <RootContainer>
+            <Container>
+                <ContentContainer>
+                    <AppBarWrapper>
+                        <AppBar />
+                    </AppBarWrapper>
 
-                <TitleContainer>
-                    <Title>성사된 카풀 정보 입력 !</Title>
-                </TitleContainer>
-                <InfoBox
-                    content={`성사된 카풀 정보 입력은\n범죄 발생 시\n추적을 용이하게\n할 수 있는 기능입니다.\n\n카풀 참여자 분이\n직접 정보를 수집하여\n정확하게 입력해주세요.\n\n기록은 작성일 기준\n30일간 보관됩니다.`}
-                />
-                <InfoInputForm 
-                nameChange = {handleChildNameChange}
-                stuNumChange = {handleChildStuNumChange}
-                phoneNumChange = {handleChildPhoneNumChange}
-                postNumChange = {handleChildPostNumChange}
-                hostNameChange = {handleChildHostNameChange}
-                hostPhoneNumChange = {handleChildHostPhoneNumChange}
-                carInfoChange = {handleChildCarInfoChange}
-                selectedDateChange={handleChildSelectedDateChange}
-                />
-            </ContentContainer>
+                    <TitleContainer>
+                        <Title>성사된 카풀 정보 입력 !</Title>
+                    </TitleContainer>
+                    <InfoBox
+                        content={`성사된 카풀 정보 입력은\n범죄 발생 시\n추적을 용이하게\n할 수 있는 기능입니다.\n\n카풀 참여자 분이\n직접 정보를 수집하여\n정확하게 입력해주세요.\n\n기록은 작성일 기준\n30일간 보관됩니다.`}
+                    />
+                    <InfoInputForm 
+                    nameChange = {handleChildNameChange}
+                    stuNumChange = {handleChildStuNumChange}
+                    phoneNumChange = {handleChildPhoneNumChange}
+                    postNumChange = {handleChildPostNumChange}
+                    hostNameChange = {handleChildHostNameChange}
+                    hostPhoneNumChange = {handleChildHostPhoneNumChange}
+                    carInfoChange = {handleChildCarInfoChange}
+                    selectedDateChange={handleChildSelectedDateChange}
+                    />
+                </ContentContainer>
 
-            <ButtonWrapper>
-                <CommonButton text={"정보 입력 완료"} onClick={InfoComplete} />
-            </ButtonWrapper>
-        </Container>
+                <ButtonWrapper>
+                    <CommonButton text={"정보 입력 완료"} onClick={InfoComplete} />
+                </ButtonWrapper>
+            </Container>
+        </RootContainer>
+
     );
 };
+
+
+const RootContainer = styled.div`
+  width: 390px;
+  max-width: 390px;
+  height: 844px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #f6fcff;
+  overflow: hidden;
+`;
 
 const Container = styled.div`
 width: 390px;
