@@ -1,7 +1,10 @@
 import React from "react";
 import styled from "styled-components";
 
-const ListComponent = ({ title, type, client_gender, dept, dest, member, price, created_at, carpool_date, onClick }) => {
+const ListComponent = ({ carpool_info, onClick }) => {
+    const { title, type, client_gender, dept, dest, member, price, created_at, carpool_date} = carpool_info
+
+    console.log("ㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋ", title, type, client_gender, dept, dest, member, price, created_at, carpool_date)
     const formattedType = `${type} 카풀`;
 
     // 성별에 따라 색상과 텍스트 포맷 설정

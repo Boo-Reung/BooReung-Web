@@ -10,7 +10,7 @@ import axios from "axios";
 
 
 
-const Filter = ({ show, onClose }) => {
+const Filter = ({ responseStateChange, show, onClose }) => {
     const [routeSelection, setRouteSelection] = useState("없음");
     const [genderSelection, setGenderSelection] = useState(null); // 초기값을 null로 설정
     const [deptSelection, setDeptSelection] = useState(null);
@@ -20,6 +20,7 @@ const Filter = ({ show, onClose }) => {
     const [minPriceSelection, setMinPriceSelection] = useState(null);
     const [maxPriceSelection, setMaxPriceSelection] = useState(null);
     const [dateSelection, setDateSelection] = useState(null);
+    const [responseState, setResponseState] = useState(null);
 
     // 1) 여기서 updateRouteSelection이 정의되어서 FilterContainerType.js으로 props 전달
     // 3) FilterContainerType.js에서 업데이트된 상태는 Filter.js의 다른 자식 컴포넌트 (FilterContainerRoute에 영향)
@@ -92,6 +93,8 @@ const Filter = ({ show, onClose }) => {
             const response = await axios.post('http://nkey18.pythonanywhere.com/api/carpools/filter/', body);
             onClose();
             console.log(response.data);
+            setResponseState(response.data);
+            responseStateChange(response.data);
         } catch (error) {
             console.error('Fetch 작업 중 문제가 발생했습니다:', error);
         } finally {
