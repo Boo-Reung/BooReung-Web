@@ -113,11 +113,17 @@ const Filter = ({ responseStateChange, show, onClose }) => {
                 <FilterContainerType updateRouteSelection={updateRouteSelection} />
                 <FilterContainerGender updateGenderSelection={updateGenderSelection} />
                 <FilterContainerDate updateDateSelection={updateDateSelection} />
-                <FilterContainerRoute routeSelection={routeSelection} updateDeptSelection={setDeptSelection} updateDestSelection={setDestSelection} />
+                <FilterContainerRoute 
+                    routeSelection={routeSelection}
+                    deptSelection={deptSelection}
+                    destSelection={destSelection}
+                    updateDeptSelection={setDeptSelection} 
+                    updateDestSelection={setDestSelection} 
+                />
                 <FilterContainerMember
-                    minMember={minMemberSelection}
+                    minMember={minMemberSelection} // useState의 왼쪽 parameter
                     maxMember={maxMemberSelection}
-                    updateMinMemberSelection={setMinMemberSelection}
+                    updateMinMemberSelection={setMinMemberSelection} //useState의 오른쪽 setter
                     updateMaxMemberSelection={setMaxMemberSelection}
                 />
                 <FilterContainerPrice 

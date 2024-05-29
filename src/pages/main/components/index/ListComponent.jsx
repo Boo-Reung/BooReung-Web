@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 
 const ListComponent = ({ carpool_info, onClick }) => {
-    const { title, type, client_gender, dept, dest, member, price, created_at, carpool_date} = carpool_info
+    const { id, title, type, client_gender, dept, dest, member, price, created_at, carpool_date} = carpool_info
 
     console.log("ㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋ", title, type, client_gender, dept, dest, member, price, created_at, carpool_date)
     const formattedType = `${type} 카풀`;
@@ -29,7 +29,7 @@ const ListComponent = ({ carpool_info, onClick }) => {
     const formattedPrice = `가격(1인당) : ${price} 원`;
 
     return (
-        <Container onClick={onClick}>
+        <Container onClick={()=>onClick(id)}>
             <Title>{title}</Title>
             <ContentContainer>
                 <RowContainer>

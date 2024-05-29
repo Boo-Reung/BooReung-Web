@@ -1,18 +1,10 @@
-import React, {useState} from "react";
-import styled, {css} from "styled-components";
+import React, { useState, useEffect } from "react";
+import styled, { css } from "styled-components";
 
-import RouteDropDown from "./route/RouteDropDown"
-import RouteSearch from "./route/RouteSearch"
+import RouteDropDown from "./route/RouteDropDown";
+import RouteSearch from "./route/RouteSearch";
 
-/* [목적 : 여행] 이면 출발, 도착지가 검색창이어야 한다. */
-/* [목적 : 통학] 이면 출발, 도착지가 피그마대로 드롭다운 형식이어야 한다. */
-/* [목적 : 없음] 여행 선택했을 떄와 동일 (출발, 도착지가 검색창) */
-
-/* [경로 : 없음] 목적에서 무엇을 선택하든 검색창 및 드롭다운을 띄우지 않음 */
-
-
-// 4) routeSelection은 목적 값임  (없음, 통학, 여행) FilterContainerType에서 정해진게 Filter.js가 업데이트 되어서 Filter.js에서 날아옴 */
-const FilterContainerRoute = ({ routeSelection }) => {
+const FilterContainerRoute = ({ routeSelection, deptSelection, destSelection, updateDeptSelection, updateDestSelection }) => {
     const [selected, setSelected] = useState("없음");
 
     const handleSelect = (type) => {
@@ -23,7 +15,7 @@ const FilterContainerRoute = ({ routeSelection }) => {
         const containerHeight = selected === "없음" ? "3rem" : "18rem";
 
     return (
-        <Container style={{height : containerHeight}}>
+        <Container style={{ height: containerHeight }}>
             <SubTitleContainerRow>
                 <Subtitle>경로</Subtitle>
                 <ContentTextRow>
@@ -46,9 +38,14 @@ const FilterContainerRoute = ({ routeSelection }) => {
                 {selected !== "없음" && (
                     <>
                         {routeSelection === "통학" ? (
-                            <RouteDropDown/>
+                            <RouteDropDown />
                         ) : (
-                            <RouteSearch/>
+                            <RouteSearch
+                                deptSelection={deptSelection}
+                                destSelection={destSelection}
+                                updateDeptSelection={updateDeptSelection}
+                                updateDestSelection={updateDestSelection}
+                            />
                         )}
                     </>
                 )}
