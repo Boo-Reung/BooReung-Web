@@ -38,7 +38,11 @@ const FilterContainerRoute = ({ routeSelection, deptSelection, destSelection, up
                 {selected !== "없음" && (
                     <>
                         {routeSelection === "통학" ? (
-                            <RouteDropDown />
+                            <RouteDropDown 
+                            updateDeptSelection={updateDeptSelection}
+
+                            
+                            />
                         ) : (
                             <RouteSearch
                                 deptSelection={deptSelection}

@@ -94,45 +94,32 @@ const Dropdown4 = ({ selectedReg, onSelect }) => {
     { num: '050', reg: '수지 노선', value: '수지지역난방공사 앞 정류장' },
     { num: '051', reg: '수지 노선', value: '수지구청' },
     { num: '052', reg: '수지 노선', value: '풍덕천삼거리정류장 용인포은아트홀' },
-    { num: '053', reg: '수지 노선', value: '한신아파트 정류장' },
-    { num: '054', reg: '수지 노선', value: '동부아파트 정류장' },
-    { num: '055', reg: '신갈 노선', value: '신갈굴다리 정류장' },
-    { num: '056', reg: '신갈 노선', value: '상갈파출소 앞' },
-    { num: '057', reg: '신갈 노선', value: '기흥역' },
-    { num: '058', reg: '신갈 노선', value: '강남대역' },
-    { num: '059', reg: '신갈 노선', value: '쌍용아파트 앞' },
-    { num: '060', reg: '신갈 노선', value: '코업호텔 앞' },
-    { num: '061', reg: '신갈 노선', value: '명지대 입구' },
-    { num: '062', reg: '신갈 노선', value: '용인터미널' },
-    { num: '063', reg: '신갈 노선', value: '송담대역' },
-    { num: '064', reg: '신갈 노선', value: '유림동 정류장' }
+    { num: '053', reg: '수지 노선', value: '죽전신세계' },
   ];
-  const filteredValues = StationList.filter((item) => item.reg === selectedReg);
-  const [selectedValue, setSelectedValue] = useState('');
-  const [menuVisible, setMenuVisible] = useState(false); // 초기값은 false로 설정하여 메뉴가 숨겨져 있는 상태
 
-  const handleValueSelect = (value) => {
-    setSelectedValue(value); // 선택된 값을 상태로 설정
-    onSelect(value); // 선택된 값을 부모 컴포넌트로 전달
-    setMenuVisible(false); // 값을 선택한 후에는 메뉴를 숨김
-  };
+  const filteredList = StationList.filter((item) => item.reg === selectedReg);
 
-  const toggleMenu = () => {
-    setMenuVisible(!menuVisible); // 메뉴의 가시성을 토글
+  const [selectedValue, setSelectedValue] = useState(''); // 초기 상태는 빈 문자열
+
+  const [isOpen, setIsOpen] = useState(false);
+
+  const toggleDropdown = () => setIsOpen(!isOpen);
+
+  const handleSelect = (value) => {
+    setSelectedValue(value);
+    setIsOpen(false);
+    onSelect(value); // 선택된 값을 콜백으로 전달
   };
 
   return (
     <DropdownContainer>
-      <ToggleButton onClick={toggleMenu}>
-        <span style={{ whiteSpace: 'pre-wrap' }}>{selectedValue || '정류장을\n선택하세요'}</span>
-        <span>{'⌄'}</span>
+      <ToggleButton onClick={toggleDropdown}>
+        {selectedValue || 'Select an option'}
+        <span>{isOpen ? '▲' : '▼'}</span> {/* 화살표 아이콘 */}
       </ToggleButton>
-      <DropdownMenu show={menuVisible}>
-        {filteredValues.map((item) => (
-          <MenuItem
-            key={item.num}
-            onClick={() => handleValueSelect(item.value)}
-          >
+      <DropdownMenu show={isOpen}>
+        {filteredList.map((item) => (
+          <MenuItem key={item.num} onClick={() => handleSelect(item.value)}>
             {item.value}
           </MenuItem>
         ))}

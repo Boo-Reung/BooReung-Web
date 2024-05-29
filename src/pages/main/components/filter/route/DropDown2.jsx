@@ -4,7 +4,7 @@ import styled from 'styled-components';
 const DropdownContainer = styled.div`
   position: relative;
   display: inline-block;
-  width: 200px; /* 고정된 너비 설정 */
+  width: 200px;
 `;
 
 const ToggleButton = styled.div`
@@ -28,9 +28,9 @@ const DropdownMenu = styled.ul`
   padding: 0;
   margin: 0;
   list-style: none;
-  width: 100%; /* 부모 요소와 같은 너비로 설정 */
-  max-height: 200px; /* 고정된 높이 설정 */
-  overflow-y: auto; /* 내용이 넘칠 경우 스크롤 표시 */
+  width: 100%;
+  max-height: 200px;
+  overflow-y: auto;
   z-index: 1;
 `;
 
@@ -109,16 +109,16 @@ const Dropdown2 = ({ selectedReg, onSelect }) => {
   ];
   const filteredValues = StationList.filter((item) => item.reg === selectedReg);
   const [selectedValue, setSelectedValue] = useState('');
-  const [menuVisible, setMenuVisible] = useState(false); // 초기값은 false로 설정하여 메뉴가 숨겨져 있는 상태
+  const [menuVisible, setMenuVisible] = useState(false);
 
   const handleValueSelect = (value) => {
-    setSelectedValue(value); // 선택된 값을 상태로 설정
+    setSelectedValue(value);
     onSelect(value); // 선택된 값을 부모 컴포넌트로 전달
-    setMenuVisible(false); // 값을 선택한 후에는 메뉴를 숨김
+    setMenuVisible(false);
   };
 
   const toggleMenu = () => {
-    setMenuVisible(!menuVisible); // 메뉴의 가시성을 토글
+    setMenuVisible(!menuVisible);
   };
 
   return (
