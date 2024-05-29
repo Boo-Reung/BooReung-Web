@@ -4,7 +4,7 @@ import styled from "styled-components";
 import AppBar from "../../components/AppBar";
 import CommonButton from "../../components/CommonButton";
 import RouteContainer from "./components/detail/DetailContainerRoute";
-import CarpoolDateContainer from "./components/detail/DetailContainerBig";
+import CarpoolDateContainer from "./components/detail/DetailContainerDate";
 import HostGender from "./components/detail/DetailContainerSmall";
 import ClientGender from "./components/detail/DetailContainerSmall";
 import Member from "./components/detail/DetailContainerBig";
