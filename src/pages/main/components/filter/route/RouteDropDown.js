@@ -5,13 +5,18 @@ import Dropdown3 from "./DropDown3";
 import Dropdown4 from "./DropDown4";
 import styled from "styled-components";
 
-function RouteDropDown({ updateDeptSelection }) {
+function RouteDropDown({ updateDeptSelection, updateDestSelection }) { // updateDestSelection을 추가
   const [selectedReg, setSelectedReg] = useState(null);
   const [selectedValue, setSelectedValue] = useState(null);
 
   const handleDeptSelect = (value) => {
     setSelectedValue(value);
     updateDeptSelection(value); // 선택된 값을 부모 컴포넌트로 전달
+  };
+
+  const handleDestSelect = (value) => {
+    setSelectedValue(value);
+    updateDestSelection(value); // 선택된 값을 부모 컴포넌트로 전달
   };
 
   return (
@@ -26,7 +31,7 @@ function RouteDropDown({ updateDeptSelection }) {
         <Dropdown3 onSelect={(reg) => setSelectedReg(reg)} />
         <Dropdown4
           selectedReg={selectedReg}
-          onSelect={(value) => setSelectedValue(value)}
+          onSelect={handleDestSelect} // 여기를 수정하여 handleDestSelect를 사용합니다.
         />
       </DropDownContainerRow>
     </DropBox>
