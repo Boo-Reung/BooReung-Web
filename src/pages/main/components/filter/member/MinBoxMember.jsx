@@ -30,7 +30,7 @@ const MinBoxMember = ({ value, handleChange, maxValue, disabled }) => {
 };
 
 const Container = styled.div`
-    /* 필요한 스타일을 여기에 추가하세요 */
+    background: rgba(210, 236, 250, 0.00);
 `;
 
 const MinBoxInput = styled.input`
@@ -39,7 +39,6 @@ const MinBoxInput = styled.input`
     flex-shrink: 0;
     border-radius: 0.625rem;
     border: 1px solid #9BBEC8;
-    background: rgba(210, 236, 250, 0.00);
     display: flex;
     justify-content: center;
     align-items: center;

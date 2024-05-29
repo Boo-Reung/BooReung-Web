@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import styled, { css } from "styled-components";
 
 import RouteDropDown from "./route/RouteDropDown";
@@ -11,8 +11,8 @@ const FilterContainerRoute = ({ routeSelection, deptSelection, destSelection, up
         setSelected(type);
     };
 
-        // 선택된 값에 따라 Container의 높이 설정
-        const containerHeight = selected === "없음" ? "3rem" : "18rem";
+    // 선택된 값에 따라 Container의 높이 설정
+    const containerHeight = selected === "없음" ? "3rem" : "18rem";
 
     return (
         <Container style={{ height: containerHeight }}>
@@ -38,7 +38,10 @@ const FilterContainerRoute = ({ routeSelection, deptSelection, destSelection, up
                 {selected !== "없음" && (
                     <>
                         {routeSelection === "통학" ? (
-                            <RouteDropDown />
+                            <RouteDropDown 
+                            updateDeptSelection={updateDeptSelection}
+                            updateDestSelection={updateDestSelection} // 여기에 updateDestSelection을 추가합니다.
+                            />
                         ) : (
                             <RouteSearch
                                 deptSelection={deptSelection}
@@ -53,6 +56,7 @@ const FilterContainerRoute = ({ routeSelection, deptSelection, destSelection, up
         </Container>
     );
 };
+
 
 const Container = styled.div`
     width: 18.6875rem;

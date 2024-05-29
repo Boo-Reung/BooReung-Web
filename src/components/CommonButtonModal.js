@@ -1,7 +1,7 @@
 import React from "react";
 import { styled } from "styled-components";
 
-const CommonButton = ({ text, onClick }) => {
+const CommonButtonModal = ({ text, onClick }) => {
     return (
         <Button onClick={onClick}>
             {text}
@@ -9,7 +9,7 @@ const CommonButton = ({ text, onClick }) => {
     );
 };
 
-export default CommonButton;
+export default CommonButtonModal;
 
 const Button = styled.button`
     // 디자인 속성
@@ -20,10 +20,8 @@ const Button = styled.button`
     background: #164863;
     font-family: "Gowun Batang-Bold", serif;
     // 정렬 속성
-
-    margin-left: 5.88rem;
     position: absolute;
-    bottom: 8rem;
+    bottom: 5rem;
     transform: translate(0,70px);  //민석 버튼 옮김 
 
     // text prop 속성

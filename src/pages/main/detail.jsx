@@ -4,7 +4,7 @@ import styled from "styled-components";
 import AppBar from "../../components/AppBar";
 import CommonButton from "../../components/CommonButton";
 import RouteContainer from "./components/detail/DetailContainerRoute";
-import CarpoolDateContainer from "./components/detail/DetailContainerBig";
+import CarpoolDateContainer from "./components/detail/DetailContainerDate";
 import HostGender from "./components/detail/DetailContainerSmall";
 import ClientGender from "./components/detail/DetailContainerSmall";
 import Member from "./components/detail/DetailContainerBig";
@@ -93,6 +93,7 @@ const Container = styled.div`
     flex-direction: column;
     align-items: center;
     gap: 1.5rem;
+    height: 1570px;
 `;
 
 const HeaderContainer = styled.div`
