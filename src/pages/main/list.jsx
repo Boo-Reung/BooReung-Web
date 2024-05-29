@@ -39,8 +39,8 @@ const List = () => {
         navigate("/after");
     }
 
-    const handleDetailButtonClick = () => {
-        navigate("/detail")
+    const handleDetailButtonClick = (id) => {
+        navigate(`/detail/${id}`)
     }
     useEffect(() => {
         const GetCarpoolList = () => {
