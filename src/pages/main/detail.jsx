@@ -30,7 +30,7 @@ const Detail = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await axios.get(`기본주소url/~/${id}`);
+                const response = await axios.get(`http://nkey18.pythonanywhere.com/api/carpools/detail/${id}`);
                 setData(response.data);
                 setLoading(false);
             } catch (error) {

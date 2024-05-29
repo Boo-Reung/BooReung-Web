@@ -10,7 +10,7 @@ import axios from "axios";
 
 
 
-const Filter = ({ show, onClose }) => {
+const Filter = ({ responseStateChange, show, onClose }) => {
     const [routeSelection, setRouteSelection] = useState("없음");
     const [genderSelection, setGenderSelection] = useState(null); // 초기값을 null로 설정
     const [deptSelection, setDeptSelection] = useState(null);
@@ -20,6 +20,7 @@ const Filter = ({ show, onClose }) => {
     const [minPriceSelection, setMinPriceSelection] = useState(null);
     const [maxPriceSelection, setMaxPriceSelection] = useState(null);
     const [dateSelection, setDateSelection] = useState(null);
+    const [responseState, setResponseState] = useState(null);
 
     // 1) 여기서 updateRouteSelection이 정의되어서 FilterContainerType.js으로 props 전달
     // 3) FilterContainerType.js에서 업데이트된 상태는 Filter.js의 다른 자식 컴포넌트 (FilterContainerRoute에 영향)
@@ -52,7 +53,18 @@ const Filter = ({ show, onClose }) => {
         const dateOnly = isoString.split('T')[0]; // "YYYY-MM-DD" 형식의 날짜 부분 추출
         return dateOnly;
     };
-    
+
+    const resetSelections = () => {
+        setRouteSelection("없음");
+        setGenderSelection(null);
+        setDeptSelection(null);
+        setDestSelection(null);
+        setMinMemberSelection(null);
+        setMaxMemberSelection(null);
+        setMinPriceSelection(null);
+        setMaxPriceSelection(null);
+        setDateSelection(null);
+    };
 
     const handleClose = async () => {
         const type = routeSelection === "없음" ? null : routeSelection;
@@ -81,8 +93,12 @@ const Filter = ({ show, onClose }) => {
             const response = await axios.post('http://nkey18.pythonanywhere.com/api/carpools/filter/', body);
             onClose();
             console.log(response.data);
+            setResponseState(response.data);
+            responseStateChange(response.data);
         } catch (error) {
             console.error('Fetch 작업 중 문제가 발생했습니다:', error);
+        } finally {
+            resetSelections();
         }
     };
 
@@ -97,11 +113,17 @@ const Filter = ({ show, onClose }) => {
                 <FilterContainerType updateRouteSelection={updateRouteSelection} />
                 <FilterContainerGender updateGenderSelection={updateGenderSelection} />
                 <FilterContainerDate updateDateSelection={updateDateSelection} />
-                <FilterContainerRoute routeSelection={routeSelection} updateDeptSelection={setDeptSelection} updateDestSelection={setDestSelection} />
+                <FilterContainerRoute 
+                    routeSelection={routeSelection}
+                    deptSelection={deptSelection}
+                    destSelection={destSelection}
+                    updateDeptSelection={setDeptSelection} 
+                    updateDestSelection={setDestSelection} 
+                />
                 <FilterContainerMember
-                    minMember={minMemberSelection}
+                    minMember={minMemberSelection} // useState의 왼쪽 parameter
                     maxMember={maxMemberSelection}
-                    updateMinMemberSelection={setMinMemberSelection}
+                    updateMinMemberSelection={setMinMemberSelection} //useState의 오른쪽 setter
                     updateMaxMemberSelection={setMaxMemberSelection}
                 />
                 <FilterContainerPrice 

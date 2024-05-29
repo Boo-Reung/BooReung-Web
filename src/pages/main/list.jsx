@@ -12,9 +12,18 @@ import Filter from "./Filter"
 
     // 1) 여기서 updateRouteSelection이 정의되어서 FilterContainerType.js으로 props 전달
     // 3) FilterContainerType.js에서 업데이트된 상태는 Filter.js의 다른 자식 컴포넌트 (FilterContainerRoute에 영향)
-const Main = () => {
+const List = () => {
     const [showFilterModal, setShowFilterModal] = useState(false);
     const [registeredPoolCount, setRegisteredPoolCount] = useState(0);
+    const [carpools, setCarpools] = useState([]); // 초기 상태를 빈 배열로 설정
+    const [childResponse, setChildResponse] = useState({"carpools": []});
+
+    console.log(childResponse)
+    // setRegisteredPoolCount(childResponse["carpools"].length);
+
+    const responseChange = (newResponse) => {
+        setChildResponse(newResponse);
+    }
 
     const toggleFilterModal = () => {
         setShowFilterModal(!showFilterModal);
@@ -30,21 +39,32 @@ const Main = () => {
         navigate("/after");
     }
 
-    const handleDetailButtonClick = () => {
-        navigate("/detail")
+    const handleDetailButtonClick = (id) => {
+        navigate(`/detail/${id}`)
     }
-
     useEffect(() => {
-        // 백엔드 API 호출을 통해 등록된 카풀 수 가져오기
-        axios.get("백엔드 API URL")
+        const GetCarpoolList = () => {
+            axios.get("http://nkey18.pythonanywhere.com/api/carpools/full_list/")
             .then((response) => {
-                // API 응답에서 등록된 카풀 수를 가져와 상태 업데이트
-                setRegisteredPoolCount(response.data.ppolCount);
+                console.log("API response:", response); // 응답을 콘솔에 출력하여 확인 
+                setRegisteredPoolCount(response.data.length);
+                setCarpools(response.data); // carpools 상태 업데이트
+                setChildResponse(response.data);
+                console.log("Updated carpools:", response.data); // 상태 업데이트 후 콘솔 출력
             })
             .catch((error) => {
                 console.error("Error fetching pool count:", error);
             });
-    }, []);
+        };
+        GetCarpoolList();
+        console.log("carpools state:", childResponse); // 상태가 업데이트될 때마다 콘솔에 출력
+    },[]);
+
+    // 백엔드 API 호출을 통해 등록된 카풀 수 가져오기
+    
+
+    
+    
 
     return (
         <RootContainer>
@@ -56,24 +76,28 @@ const Main = () => {
                 </SearchContainer>
                 <QuantityAndButtonsContainer>
                     <RowContainer>
-                        <RegisteredNum>등록된 카풀 <br /> 개수: {registeredPoolCount}개</RegisteredNum>
+                        <RegisteredNum>등록된 카풀 <br /> 개수: {childResponse["carpools"].length}개</RegisteredNum>
                         <HostingButton text="카풀 주최하기" width="12.6875rem" height = "3.5rem" onClick={handleHostingButtonClick}/>
                     </RowContainer>
                     <EnterCompleteButton text="성사된 카풀 정보 입력하러 가기!" width="20.5625rem" height="3.5rem" onClick={handleCompleteButtonClick}/>
                 </QuantityAndButtonsContainer>
                 <ContentContainer>
-                    <ListComponent title={"하이"} type={"통학"} client_gender={"남성"} dept={"백년관 정류장"} dest={"서현역"} carpool_date={"2023-11-09"} member={"5"} price={"5000"} onClick={handleDetailButtonClick}/>
-                    <ListComponent title={"싸게 모현에서 이문 고고"} type={"통학"} client_gender={"남성"} dept={"백년관 정류장"} dest={"서현역"} carpool_date={"2023-11-09"} member={"5"} price={"5000"} onClick={handleDetailButtonClick}/>
-                    <ListComponent title={"싸게 모현에서 이문 고고"} type={"통학"} client_gender={"남성"} dept={"백년관 정류장"} dest={"서현역"} carpool_date={"2023-11-09"} member={"5"} price={"5000"} onClick={handleDetailButtonClick}/>
+                    {childResponse && childResponse["carpools"]&&childResponse["carpools"].map((carpool,index) => (
+                        <ListComponent
+                            key={index}
+                            carpool_info={carpool}
+                            onClick={handleDetailButtonClick}
+                        />
+                    ))}
                 </ContentContainer>
-                <Filter show={showFilterModal} onClose={toggleFilterModal} />
+                <Filter responseStateChange={responseChange} show={showFilterModal} onClose={toggleFilterModal} />
             </Container>
         </RootContainer>
 
     );
 };
 
-export default Main;
+export default List;
 
 const RootContainer = styled.div`
     width: 390px;

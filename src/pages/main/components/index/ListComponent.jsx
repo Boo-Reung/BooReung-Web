@@ -1,34 +1,47 @@
 import React from "react";
 import styled from "styled-components";
 
-const ListComponent = ({title, type, client_gender, dept, dest, member, price, created_at, carpool_date, onClick}) => {
-    
+const ListComponent = ({ carpool_info, onClick }) => {
+    const { id, title, type, client_gender, dept, dest, member, price, created_at, carpool_date} = carpool_info
+
+    console.log("ㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋ", title, type, client_gender, dept, dest, member, price, created_at, carpool_date)
     const formattedType = `${type} 카풀`;
-    
-    const formattedGender = `${client_gender}만`;
 
-    const formattedRoute = `경로 : ${dept} -> ${dest}`
-    
-    const formattedDate = `카풀 날짜 : ${carpool_date}`
+    // 성별에 따라 색상과 텍스트 포맷 설정
+    const getGenderStyle = (gender) => {
+        switch (gender) {
+            case '여성':
+                return { color: '#FF6DAA', text: `${gender}만` };
+            case '남성':
+                return { color: '#0084BD', text: `${gender}만` };
+            case '성별무관':
+                return { color: '#9EC747', text: `${gender}` };
+            default:
+                return { color: '#000', text: `${gender}` };
+        }
+    };
 
-    const formattedMember = `인원 : ${member} 명`
+    const { color, text } = getGenderStyle(client_gender);
 
-    const formattedPrice = `가격(1인당) : ${price} 원`
-    return(
-        <Container onClick={onClick}>
+    const formattedRoute = `경로 : ${dept} -> ${dest}`;
+    const formattedDate = `카풀 날짜 : ${carpool_date}`;
+    const formattedMember = `인원 : ${member} 명`;
+    const formattedPrice = `가격(1인당) : ${price} 원`;
+
+    return (
+        <Container onClick={()=>onClick(id)}>
             <Title>{title}</Title>
             <ContentContainer>
                 <RowContainer>
                     <Type>{formattedType}</Type>
-                    <ClientGender>{formattedGender}</ClientGender>
+                    <ClientGender color={color}>{text}</ClientGender>
                 </RowContainer>
-                <Route>{formattedRoute}</Route> {/* json에서 key값이 출발지는 dept 도착지는 dest */}
+                <Route>{formattedRoute}</Route>
                 <CarpoolDate>{formattedDate}</CarpoolDate>
                 <Member>{formattedMember}</Member>
                 <Price>{formattedPrice}</Price>
             </ContentContainer>
         </Container>
-
     );
 };
 
@@ -45,8 +58,7 @@ const Container = styled.div`
     align-items: center;
     gap: 1rem;
     cursor: pointer;
-
-`
+`;
 
 const Title = styled.div`
     width: 17.375rem;
@@ -59,7 +71,7 @@ const Title = styled.div`
     font-weight: 700;
     line-height: normal;
     text-align: center;
-`
+`;
 
 const ContentContainer = styled.div`
     display: flex;
@@ -67,15 +79,14 @@ const ContentContainer = styled.div`
     width: 21.875rem;
     align-items: center;
     gap: 0.5rem;
-
-`
+`;
 
 const RowContainer = styled.div`
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     width: 21.875rem;
-`
+`;
 
 const Type = styled.div`
     width: 7.7rem;
@@ -88,20 +99,20 @@ const Type = styled.div`
     font-weight: 700;
     line-height: normal;
     text-align: center;
-`
+`;
 
 const ClientGender = styled.div`
     width: 5.8125rem;
     height: 1.98169rem;
     flex-shrink: 0;
-    color: #FF6DAA;
+    color: ${props => props.color};
     font-family: "Gowun Batang";
     font-size: 1.5625rem;
     font-style: normal;
     font-weight: 700;
     line-height: normal;
     text-align: center;
-`
+`;
 
 const Route = styled.div`
     width: 20.5rem;
@@ -113,7 +124,8 @@ const Route = styled.div`
     font-style: normal;
     font-weight: 400;
     line-height: normal;
-`
+`;
+
 const CarpoolDate = styled.div`
     width: 20.5rem;
     height: 1.8125rem;
@@ -124,7 +136,7 @@ const CarpoolDate = styled.div`
     font-style: normal;
     font-weight: 400;
     line-height: normal;
-`
+`;
 
 const Member = styled.div`
     width: 20.5rem;
@@ -136,8 +148,7 @@ const Member = styled.div`
     font-style: normal;
     font-weight: 400;
     line-height: normal;
-
-`
+`;
 
 const Price = styled.div`
     width: 20.5rem;
@@ -149,6 +160,6 @@ const Price = styled.div`
     font-style: normal;
     font-weight: 400;
     line-height: normal;
-`
+`;
 
-export default ListComponent
+export default ListComponent;
