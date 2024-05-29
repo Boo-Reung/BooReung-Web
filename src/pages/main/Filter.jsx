@@ -163,6 +163,7 @@ const ModalContainer = styled.div`
     flex-direction: column;
     gap: 1rem;
     margin-right: 1rem;
+    overflow-x: hidden;
 `;
 
 const CloseButton = styled.button`

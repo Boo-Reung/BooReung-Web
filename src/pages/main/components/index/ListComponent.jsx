@@ -2,9 +2,9 @@ import React from "react";
 import styled from "styled-components";
 
 const ListComponent = ({ carpool_info, onClick }) => {
-    const { id, title, type, client_gender, dept, dest, member, price, created_at, carpool_date} = carpool_info
+    const { id, title, type, client_gender, dept, dest, member, price, created_at, carpool_date } = carpool_info
 
-    console.log("ㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋ", title, type, client_gender, dept, dest, member, price, created_at, carpool_date)
+    console.log("받아온 정보들:", title, type, client_gender, dept, dest, member, price, created_at, carpool_date)
     const formattedType = `${type} 카풀`;
 
     // 성별에 따라 색상과 텍스트 포맷 설정
@@ -24,12 +24,29 @@ const ListComponent = ({ carpool_info, onClick }) => {
     const { color, text } = getGenderStyle(client_gender);
 
     const formattedRoute = `경로 : ${dept} -> ${dest}`;
-    const formattedDate = `카풀 날짜 : ${carpool_date}`;
+
+    // 날짜와 시간을 원하는 형식으로 변환 (오전/오후 추가)
+    const formatDate = (isoString) => {
+        const date = new Date(isoString);
+        const year = date.getFullYear();
+        const month = String(date.getMonth() + 1).padStart(2, '0');
+        const day = String(date.getDate()).padStart(2, '0');
+
+        let hours = date.getHours();
+        const minutes = String(date.getMinutes()).padStart(2, '0');
+        const ampm = hours >= 12 ? '오후' : '오전';
+        hours = hours % 12;
+        hours = hours ? hours : 12; // 0시를 12시로 표시
+
+        return `${year}-${month}-${day} ${ampm} ${String(hours).padStart(2, '0')}:${minutes}`;
+    };
+
+    const formattedDate = `카풀 날짜 : ${formatDate(carpool_date)}`;
     const formattedMember = `인원 : ${member} 명`;
     const formattedPrice = `가격(1인당) : ${price} 원`;
 
     return (
-        <Container onClick={()=>onClick(id)}>
+        <Container onClick={() => onClick(id)}>
             <Title>{title}</Title>
             <ContentContainer>
                 <RowContainer>

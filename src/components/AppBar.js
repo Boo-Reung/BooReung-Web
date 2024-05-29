@@ -59,6 +59,7 @@ const Logo = styled.img`
     // 부모 요소(Container: relative)의 가로 세로 중앙에 절대 위치에 고정
     left: 50%;
     top: 50%;
+    cursor: pointer;
 `;
 
 const Warning = styled.img`
