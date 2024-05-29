@@ -15,7 +15,7 @@ const MaxBoxPrice = ({ maxPrice, setMaxPrice }) => {
                 onChange={handleChange}
                 min="0"
                 max="50000"
-                placeholder="인당"
+                placeholder="먼저 입력"
             />
         </MaxBox>
     );

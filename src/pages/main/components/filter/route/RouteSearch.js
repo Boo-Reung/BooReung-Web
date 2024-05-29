@@ -29,7 +29,7 @@ const SearchContainerRow = styled.div`
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    margin-top: 1.5rem;
+    margin-top: 2.5rem;
 `;
 
 const Start = styled.div`
@@ -65,19 +65,19 @@ const Arrive = styled.div`
 const ArrowContainerColumn = styled.div`
     display: flex;
     flex-direction: column;
-    margin-top: auto;
+    gap: 0.8rem;
 `;
 
 const SearchBoxContainerColumn = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 0.5rem;
+    gap: 1.5rem;
 `;
 
 const DeptBoxSearch = styled.input`
     width: 15.5rem;
-    height: 2.4375rem;
+    height: 4rem;
     flex-shrink: 0;
     border-radius: 0.625rem;
     border: 1px solid #9bbec8;
@@ -90,7 +90,7 @@ const DeptBoxSearch = styled.input`
 
 const DestBoxSearch = styled.input`
     width: 15.5rem;
-    height: 2.4375rem;
+    height: 4rem;
     flex-shrink: 0;
     border-radius: 0.625rem;
     border: 1px solid #9bbec8;
