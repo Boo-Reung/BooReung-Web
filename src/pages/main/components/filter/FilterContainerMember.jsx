@@ -9,7 +9,7 @@ const FilterContainerMember = ({ minMember, maxMember, updateMinMemberSelection,
     const [selected, setSelected] = useState("없음");
 
     useEffect(() => {
-        if (selected === "없음") {
+        if (selected === "없음") { // 없음 누르면 null 값으로 만들기
             setMinValue(null);
             setMaxValue(null);
             updateMinMemberSelection(null);

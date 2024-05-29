@@ -1,22 +1,26 @@
 import React from "react";
 import styled from "styled-components";
-import DownArrow from "../../../../../assets/images/DownArrow.svg"
+import DownArrow from "../../../../../assets/images/DownArrow.svg";
 
-
-const RouteSearch = () => {
-
+const RouteSearch = ({ deptSelection, destSelection, updateDeptSelection, updateDestSelection }) => {
     return (
-    <SearchContainerRow>
-        <ArrowContainerColumn>
-            <Start>출발</Start>
-            <Arrow src={DownArrow} alt="arrow" />
-            <Arrive>도착</Arrive>
-        </ArrowContainerColumn>
-        <SearchBoxContainerColumn>
-            <DeptBoxSearch />
-            <DestBoxSearch />
-        </SearchBoxContainerColumn>
-    </SearchContainerRow>
+        <SearchContainerRow>
+            <ArrowContainerColumn>
+                <Start>출발</Start>
+                <Arrow src={DownArrow} alt="arrow" />
+                <Arrive>도착</Arrive>
+            </ArrowContainerColumn>
+            <SearchBoxContainerColumn>
+                <DeptBoxSearch 
+                    value={deptSelection}
+                    onChange={(e) => updateDeptSelection(e.target.value)} // 입력값 변경 시 상태 업데이트
+                />
+                <DestBoxSearch 
+                    value={destSelection}
+                    onChange={(e) => updateDestSelection(e.target.value)} // 입력값 변경 시 상태 업데이트
+                />
+            </SearchBoxContainerColumn>
+        </SearchContainerRow>
     );
 };
 
@@ -71,7 +75,7 @@ const SearchBoxContainerColumn = styled.div`
     gap: 0.5rem;
 `;
 
-const DeptBoxSearch = styled.div`
+const DeptBoxSearch = styled.input`
     width: 15.5rem;
     height: 2.4375rem;
     flex-shrink: 0;
@@ -81,17 +85,20 @@ const DeptBoxSearch = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
-`;
-const DestBoxSearch = styled.div`
-    width: 15.5rem;
-    height: 2.4375rem;
-    flex-shrink: 0;
-    border-radius: 0.625rem;
-    border: 1px solid #9bbec8;
-    background: rgba(210, 236, 250, 0.00);
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    padding : 1rem;
 `;
 
-export default RouteSearch
+const DestBoxSearch = styled.input`
+    width: 15.5rem;
+    height: 2.4375rem;
+    flex-shrink: 0;
+    border-radius: 0.625rem;
+    border: 1px solid #9bbec8;
+    background: rgba(210, 236, 250, 0.00);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding : 1rem;
+`;
+
+export default RouteSearch;
