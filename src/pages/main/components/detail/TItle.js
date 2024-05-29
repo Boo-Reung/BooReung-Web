@@ -25,6 +25,7 @@ const Title = styled.div`
     font-style: normal;
     font-weight: 700;
     line-height: normal;
+    text-align: center;
 `
 
 export default DetailTitle

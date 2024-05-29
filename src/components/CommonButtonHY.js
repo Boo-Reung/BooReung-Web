@@ -18,6 +18,7 @@ const Button = styled.button`
     flex-shrink: 0;
     border-radius: 1.25rem;
     background: #164863;
+    font-family: "Gowun Batang-Bold", serif;
     // 정렬 속성
 
     
