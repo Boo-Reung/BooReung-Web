@@ -12,12 +12,13 @@ const DetailTitle = ({title}) => {
 };
 
 const Container = styled.div`
+    padding-bottom: 1rem;
 
 `;
 
 const Title = styled.div`
-    width: 12.875rem;
-    height: 2.75rem;
+    width: 20.625rem;
+    height: 0.8em;
     flex-shrink: 0;
     color: #164863;
     font-family: "Gowun Batang";
