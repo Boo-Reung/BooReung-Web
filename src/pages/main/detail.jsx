@@ -56,7 +56,7 @@ const Detail = () => {
                 <AppBar />
                 <Title title={data.title} />
                 <HeaderContainer>
-                    <PostNum post_num={data.post_num} />
+                    <PostNum id={data.id} />
                     <HostNameAndType host_name={data.host_name} type={data.type} />
                 </HeaderContainer>
                 <RouteContainer subtitle={"경로"} dept={data.dept} dest={data.dest} />

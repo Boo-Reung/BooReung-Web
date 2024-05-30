@@ -1,8 +1,8 @@
 import React from "react";
 import styled from "styled-components";
 
-const PostNumber = ({post_num}) => {
-    const formattedPostnum = `게시글 번호 : ${post_num}`;
+const PostNumber = ({id}) => {
+    const formattedPostnum = `게시글 번호 : ${id}`;
 
     return(
         <Container>
