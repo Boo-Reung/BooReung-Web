@@ -76,7 +76,7 @@ const HostingEnterBox = () => {
 
     try {
       const response = await axios.post(
-        "http://nkey18.pythonanywhere.com/api/carpools/host/",
+        "https://nkey18.pythonanywhere.com/api/carpools/host/",
         postlist
       );
       console.log("Response data:", response.data);

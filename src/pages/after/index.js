@@ -63,7 +63,7 @@ const After = () => {
         };
        
         axios
-            .post("http://nkey18.pythonanywhere.com/api/carpools/completedcarpool/", Info)
+            .post("https://nkey18.pythonanywhere.com/api/carpools/completedcarpool/", Info)
             .then((response) => {
                 console.log("success", Info)
             console.log(response);
