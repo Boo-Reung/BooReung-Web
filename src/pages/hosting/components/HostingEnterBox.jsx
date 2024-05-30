@@ -1,62 +1,66 @@
-import React, { useState  } from "react";
-import styled from "styled-components";
+import React, { useState } from "react";
+import styled, { css } from "styled-components";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import Select from "./select";
 import axios from "axios";
 import CommonButton from "../../../components/CommonButtonHY";
 import { useNavigate } from "react-router-dom";
-
+import HostRouteDropDown from "./HostRouteDropDown";
 
 const HostingEnterBox = () => {
   const [purposeOption, setPurposeOption] = useState(null);
-  const [departureOption, setDepartureOption] = useState(null);
-  const [arrivalOption, setArrivalOption] = useState(null);
+  const [dateDeptSelection, setDateDeptSelection] = useState(null);
+  const [dateDestSelection, setDateDestSelection] = useState(null);
   const [hostGenderOption, setHostGenderOption] = useState(null);
   const [applicableGenderOption, setApplicableGenderOption] = useState(null);
   const [selectedDate, setSelectedDate] = useState(null);
-
   const navigate = useNavigate();
 
+  const [titleValue, setTitleValue] = useState(null);
+  const TitleChange = (event) => {
+    setTitleValue(event.target.value);
+  };
+
+  const [nameValue, setnameValue] = useState(null);
+  const NameChange = (event) => {
+    setnameValue(event.target.value);
+  };
+
+  const [memberValue, setmemberValue] = useState(null);
+  const MemberChange = (event) => {
+    setmemberValue(event.target.value);
+  };
+
+  const [priceValue, setpriceValue] = useState(null);
+  const PriceChange = (event) => {
+    setpriceValue(event.target.value);
+  };
+
+  const [carValue, setcarValue] = useState(null);
+  const CarChange = (event) => {
+    setcarValue(event.target.value);
+  };
+
+  const [contentValue, setcontentValue] = useState(null);
+  const ContentChange = (event) => {
+    setcontentValue(event.target.value);
+  };
+
+  const [kakaoValue, setkakaoValue] = useState(null);
+  const KakaoChange = (event) => {
+    setkakaoValue(event.target.value);
+  };
 
 
+  const updateDeptSelection = (value) => {
+    setDateDeptSelection(value); // 선택된 출발지 값을 업데이트
+  };
+  
+  const updateDestSelection = (value) => {
+    setDateDestSelection(value); // 선택된 도착지 값을 업데이트
+  };
 
-
-    const [titleValue, setTitleValue] = useState(null);
-    const TitleChange = (event) => {
-      setTitleValue(event.target.value);
-    };
-
-    const [nameValue, setnameValue] = useState(null);
-    const NameChange = (event) => {
-      setnameValue(event.target.value);
-    };
-
-    const [memberValue, setmemberValue] = useState(null);
-    const MemberChange = (event) => {
-      setmemberValue(event.target.value);
-    };
-
-    const [priceValue, setpriceValue] = useState(null);
-    const PriceChange = (event) => {
-      setpriceValue(event.target.value);
-    };
-
-    const [carValue, setcarValue] = useState(null);
-    const CarChange = (event) => {
-      setcarValue(event.target.value);
-    };
-
-    const [contentValue, setcontentValue] = useState(null);
-    const ContentChange = (event) => {
-      setcontentValue(event.target.value);
-    };
-
-    const [kakaoValue, setkakaoValue] = useState(null);
-    const KakaoChange = (event) => {
-      setkakaoValue(event.target.value);
-    };
-    
   const postData = async () => {
     const postlist = {
       host_name: nameValue,
@@ -64,10 +68,10 @@ const HostingEnterBox = () => {
       type: purposeOption,
       client_gender: applicableGenderOption,
       host_gender: hostGenderOption,
-      dept: departureOption,
-      dest: arrivalOption,
+      dept: dateDeptSelection, 
+      dest: dateDestSelection,
       member: memberValue,
-      price: priceValue,
+      price: priceValue, 
       car_info: carValue,
       content: contentValue,
       open_kakao: kakaoValue,
@@ -86,11 +90,10 @@ const HostingEnterBox = () => {
 
     navigate("/list");
   };
-  
-      
+
   return (
     <>
-    <PageWrapper>
+      <PageWrapper>
         <PageTitle>제목을 입력하세요</PageTitle>
         <Input value={titleValue} onChange={TitleChange} type="text" placeholder="10글자 이내로 입력하세요" />
         <PageTitle>이름을 입력하세요</PageTitle>
@@ -104,29 +107,19 @@ const HostingEnterBox = () => {
         />
 
         <PageTitle>카풀 할 날짜와 시간을 입력하세요</PageTitle>
-          <DatePickerWrapper>
-            <StyledDatePicker
-              selected={selectedDate}
-              onChange={(date) => setSelectedDate(date)}
-              showTimeSelect
-              dateFormat="Pp"
-              placeholderText="날짜와 시간 선택하기! (클릭)"
-            />
-          </DatePickerWrapper>
+        <DatePickerWrapper>
+          <StyledDatePicker
+            selected={selectedDate}
+            onChange={(date) => setSelectedDate(date)}
+            showTimeSelect
+            dateFormat="Pp"
+            placeholderText="날짜와 시간 선택하기! (클릭)"
+          />
+        </DatePickerWrapper>
 
-        <PageTitle>경로(출발)</PageTitle>
-        <Select
-          options={['지역', '정류장']}
-          selectedOption={departureOption}
-          onOptionClick={setDepartureOption}
-        />
-
-        <PageTitle>경로(도착)</PageTitle>
-        <Select
-          options={['지역', '정류장']}
-          selectedOption={arrivalOption}
-          onOptionClick={setArrivalOption}
-        />
+        <HostRouteDropDown 
+        updateDeptSelection={updateDeptSelection} 
+        updateDestSelection={updateDestSelection}/>
 
         <PageTitle>호스트의 성별</PageTitle>
         <Select
@@ -149,27 +142,53 @@ const HostingEnterBox = () => {
         <Input value={priceValue} onChange={PriceChange} type="text" placeholder="5글자 이내로 입력하세요" />
 
         <PageTitle>차량정보</PageTitle>
-        <Input value={carValue} onChange={CarChange}  type="text" placeholder="ex) 검정카니발 34오 0214" />
+        <Input value={carValue} onChange={CarChange} type="text" placeholder="ex) 검정카니발 34오 0214" />
 
         <PageTitle>내용</PageTitle>
         <BigInput value={contentValue} onChange={ContentChange} placeholder="간단한 소개글을 작성하세요(50자 이내)" />
 
         <PageTitle>오픈 카톡방 링크</PageTitle>
         <Input value={kakaoValue} onChange={KakaoChange} type="text" placeholder="오픈 카톡방 링크를 입력하세요" />
+      </PageWrapper>
+      
+      <ButtonWrapper>
+        <CommonButton text={'정보 입력 완료'} onClick={postData} />
+      </ButtonWrapper>
+    </>
+  );
+}
+const DropDownContainerRow = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+`;
 
-    
+const Start = styled.h1`
+  width: 1.875rem;
+  height: 1.34488rem;
+  flex-shrink: 0;
+  color: #000;
+  font-family: "Gowun Dodum";
+  font-size: 0.9375rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+`;
 
-    </PageWrapper>
+const Arrive = styled.h1`
+  width: 1.875rem;
+  height: 1.34488rem;
+  flex-shrink: 0;
+  color: #000;
+  font-family: "Gowun Dodum";
+  font-size: 0.9375rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+`;
 
-    
-    <ButtonWrapper>
-      <CommonButton text={'정보 입력 완료'} onClick={postData} />
-    </ButtonWrapper>
-  </>
-  );}
-
-
-const Input= styled.input`
+const Input = styled.input`
   width: 21.5rem;
   height: 61px;
   flex-shrink: 0;
@@ -181,27 +200,29 @@ const Input= styled.input`
 
   &::placeholder {
     font-size: 1rem;
+  }
 `;
 
 const PageWrapper = styled.div`
-display : flex;
-flex-direction:column;
-align-items: flex-start;
-padding: 0rem 1rem 1rem 1rem;
-width: 100%;
-max-width: 390px;
-margin: 0 auto;
-`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 0rem 1rem 1rem 1rem;
+  width: 100%;
+  max-width: 390px;
+  margin: 0 auto;
+`;
+
 const PageTitle = styled.h1`
-width: 100%
-height: 2rem;
-flex-shrink: 0;
-font-size: 1.3rem;
-margin:0.4rem 0;
-padding-top: 0.88rem;
-color: #000;
-font-family: "Gowun Batang";
-`
+  width: 100%;
+  height: 2rem;
+  flex-shrink: 0;
+  font-size: 1.3rem;
+  margin: 0.4rem 0;
+  padding-top: 0.88rem;
+  color: #000;
+  font-family: "Gowun Batang";
+`;
 
 const DatePickerWrapper = styled.div`
   width: 100%;
@@ -222,20 +243,19 @@ const DatePickerWrapper = styled.div`
 `;
 
 const StyledDatePicker = styled(DatePicker)`
-width: 15.6875rem;
-height: 1.4375rem;
-flex-shrink: 0;
-border:none;
-cursor: pointer;
+  width: 15.6875rem;
+  height: 1.4375rem;
+  flex-shrink: 0;
+  border: none;
+  cursor: pointer;
 
-
-
-&::placeholder {
-    font-size: 1rem; 
+  &::placeholder {
+    font-size: 1rem;
     color: #000;
-    text-align:center;
-}
-`
+    text-align: center;
+  }
+`;
+
 const BigInput = styled.textarea`
   width: 340px;
   height: 246px;
@@ -252,7 +272,18 @@ const BigInput = styled.textarea`
   &::placeholder {
     font-size: 1rem;
     vertical-align: top;
+  }
 `;
+
+const AdditionalInfo = styled.div`
+  margin-top: 0.5rem;
+  padding: 0.5rem;
+  border: 1px solid #9BBEC8;
+  border-radius: 10px;
+  background: rgba(210, 236, 250, 0.1);
+  width: 100%;
+`;
+
 const ButtonWrapper = styled.div`
   display: flex;
   margin-top: auto;
@@ -261,5 +292,4 @@ const ButtonWrapper = styled.div`
   transform: translate(80px, 20px);
 `;
 
-  
 export default HostingEnterBox;
