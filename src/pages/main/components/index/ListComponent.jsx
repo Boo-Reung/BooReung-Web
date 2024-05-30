@@ -119,7 +119,7 @@ const Type = styled.div`
 `;
 
 const ClientGender = styled.div`
-    width: 5.8125rem;
+    width: 6.5rem;
     height: 1.98169rem;
     flex-shrink: 0;
     color: ${props => props.color};
@@ -128,12 +128,12 @@ const ClientGender = styled.div`
     font-style: normal;
     font-weight: 700;
     line-height: normal;
-    text-align: center;
+    // text-align: center;
 `;
 
 const Route = styled.div`
     width: 20.5rem;
-    height: 1.8125rem;
+    height: 3rem;
     flex-shrink: 0;
     color: #000;
     font-family: "Gowun Dodum";

@@ -68,9 +68,9 @@ const ContentBox = styled.div`
 const ContentText = styled.p`
     color: #000;
     font-family: "Gowun Dodum";
-    font-size: 1.25rem;
+    font-size: 0.9rem;
     font-style: normal;
-    font-weight: 400;
+    font-weight: 550;
     line-height: normal;
 `
 
