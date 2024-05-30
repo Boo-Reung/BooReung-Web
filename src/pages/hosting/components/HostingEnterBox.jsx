@@ -7,8 +7,9 @@ import axios from "axios";
 import CommonButton from "../../../components/CommonButtonHY";
 import { useNavigate } from "react-router-dom";
 import HostRouteDropDown from "./HostRouteDropDown";
+// import DownArrow from "../../../../../assets/images/DownArrow.svg";
 
-const HostingEnterBox = () => {
+const HostingEnterBox = ({deptSelection, destSelection}) => {
   const [purposeOption, setPurposeOption] = useState(null);
   const [dateDeptSelection, setDateDeptSelection] = useState(null);
   const [dateDestSelection, setDateDestSelection] = useState(null);
@@ -105,6 +106,30 @@ const HostingEnterBox = () => {
           selectedOption={purposeOption}
           onOptionClick={setPurposeOption}
         />
+        {purposeOption === '통학' ? (
+          <HostRouteDropDown 
+            updateDeptSelection={updateDeptSelection} 
+            updateDestSelection={updateDestSelection}
+          />
+        ) : (
+        <SearchContainerRow>
+        <ArrowContainerColumn>
+            <Dstart>출발</Dstart>
+            {/* <Arrow src={DownArrow} alt="arrow" /> */}
+            <Darrive>도착</Darrive>
+        </ArrowContainerColumn>
+        <SearchBoxContainerColumn>
+                <DeptBoxSearch 
+                    value={deptSelection}
+                    onChange={(e) => updateDeptSelection(e.target.value)} // 입력값 변경 시 상태 업데이트
+                />
+                <DestBoxSearch 
+                    value={destSelection}
+                    onChange={(e) => updateDestSelection(e.target.value)} // 입력값 변경 시 상태 업데이트
+                />
+        </SearchBoxContainerColumn>
+        </SearchContainerRow>
+        )}
 
         <PageTitle>카풀 할 날짜와 시간을 입력하세요</PageTitle>
         <DatePickerWrapper>
@@ -117,9 +142,9 @@ const HostingEnterBox = () => {
           />
         </DatePickerWrapper>
 
-        <HostRouteDropDown 
+        {/* <HostRouteDropDown 
         updateDeptSelection={updateDeptSelection} 
-        updateDestSelection={updateDestSelection}/>
+        updateDestSelection={updateDestSelection}/> */}
 
         <PageTitle>호스트의 성별</PageTitle>
         <Select
@@ -156,7 +181,91 @@ const HostingEnterBox = () => {
       </ButtonWrapper>
     </>
   );
-}
+};
+
+const SearchContainerRow = styled.div`
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 2.5rem;
+`;
+
+const Dstart = styled.div`
+    width: 1.875rem;
+    height: 1.34488rem;
+    flex-shrink: 0;
+    color: #000;
+    font-family: "Gowun Dodum";
+    font-size: 0.9375rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    transform: translate(0.5rem, -1.5rem);
+`;
+
+const Darrive = styled.div`
+    width: 1.875rem;
+    height: 1.34488rem;
+    flex-shrink: 0;
+    color: #000;
+    font-family: "Gowun Dodum";
+    font-size: 0.9375rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    transform: translate(0.5rem, 2rem);
+`;
+
+
+// const Arrow = styled.img`
+//     width: 1.32263rem;
+//     height: 2.39694rem;
+//     flex-shrink: 0;
+// `;
+
+
+
+const ArrowContainerColumn = styled.div`
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+`;
+
+const SearchBoxContainerColumn = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+    transform: translate(2rem, 0rem);
+`;
+
+const DeptBoxSearch = styled.input`
+    width: 15.5rem;
+    height: 4rem;
+    flex-shrink: 0;
+    border-radius: 0.625rem;
+    border: 1px solid #9bbec8;
+    background: rgba(210, 236, 250, 0.00);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding : 1rem;
+`;
+
+const DestBoxSearch = styled.input`
+    width: 15.5rem;
+    height: 4rem;
+    flex-shrink: 0;
+    border-radius: 0.625rem;
+    border: 1px solid #9bbec8;
+    background: rgba(210, 236, 250, 0.00);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding : 1rem;
+`;
+
 const DropDownContainerRow = styled.div`
   display: flex;
   flex-direction: row;
@@ -164,29 +273,29 @@ const DropDownContainerRow = styled.div`
   align-items: center;
 `;
 
-const Start = styled.h1`
-  width: 1.875rem;
-  height: 1.34488rem;
-  flex-shrink: 0;
-  color: #000;
-  font-family: "Gowun Dodum";
-  font-size: 0.9375rem;
-  font-style: normal;
-  font-weight: 400;
-  line-height: normal;
-`;
+// const Start = styled.h1`
+//   width: 1.875rem;
+//   height: 1.34488rem;
+//   flex-shrink: 0;
+//   color: #000;
+//   font-family: "Gowun Dodum";
+//   font-size: 0.9375rem;
+//   font-style: normal;
+//   font-weight: 400;
+//   line-height: normal;
+// `;
 
-const Arrive = styled.h1`
-  width: 1.875rem;
-  height: 1.34488rem;
-  flex-shrink: 0;
-  color: #000;
-  font-family: "Gowun Dodum";
-  font-size: 0.9375rem;
-  font-style: normal;
-  font-weight: 400;
-  line-height: normal;
-`;
+// const Arrive = styled.h1`
+//   width: 1.875rem;
+//   height: 1.34488rem;
+//   flex-shrink: 0;
+//   color: #000;
+//   font-family: "Gowun Dodum";
+//   font-size: 0.9375rem;
+//   font-style: normal;
+//   font-weight: 400;
+//   line-height: normal;
+// `;
 
 const Input = styled.input`
   width: 21.5rem;
