@@ -90,7 +90,7 @@ const Filter = ({ responseStateChange, show, onClose }) => {
         console.log("Request body:", body); // 전체 요청 본문 로깅
 
         try {
-            const response = await axios.post('http://nkey18.pythonanywhere.com/api/carpools/filter/', body);
+            const response = await axios.post('https://nkey18.pythonanywhere.com/api/carpools/filter/', body);
             onClose();
             console.log(response.data);
             setResponseState(response.data);

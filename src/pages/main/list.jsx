@@ -44,7 +44,7 @@ const List = () => {
     }
     useEffect(() => {
         const GetCarpoolList = () => {
-            axios.get("http://nkey18.pythonanywhere.com/api/carpools/full_list/")
+            axios.get("https://nkey18.pythonanywhere.com/api/carpools/full_list/")
             .then((response) => {
                 console.log("API response:", response); // 응답을 콘솔에 출력하여 확인 
                 setRegisteredPoolCount(response.data.length);
