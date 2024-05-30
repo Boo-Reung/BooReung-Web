@@ -15,13 +15,13 @@ const DetailContainerSmall = ({subtitle, content}) => {
 const Container = styled.div`
     display: flex;
     flex-direction: column;
-    width: 9.1875rem;
+    width: 11rem;
     height: 6.5rem;
     flex-shrink: 0;
 `
 
 const Subtitle = styled.p`
-    width: 9.1875rem;
+    width: 11rem;
     height: 2rem;
     flex-shrink: 0;
     color: #000;
